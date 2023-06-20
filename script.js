@@ -10,7 +10,18 @@ window.onload = function() {
     const aboutDetails = 'Soy Guillermo Fuentes, un Ingeniero en Recursos Naturales graduado de la Universidad de Chile con un gran interés en las ciencias ambientales y los recursos naturales. Tengo amplia experiencia en Estadística aplicada, Sistemas de Información Geográfica (GIS), teledetección, modelamiento ambiental y docencia. Además, cuento con un Magíster en Gestión Territorial de Recursos Naturales de la misma universidad.<br>He tenido la oportunidad de participar en proyectos de investigación con instituciones y empresas públicas como municipalidades, la Empresa Nacional del Petróleo y el Servicio Agrícola y Ganadero, así como también con universidades chilenas como la Universidad de Talca y la Universidad de Santiago. Como docente, he impartido clases en física aplicada, estadística, sistemas ambientales, teledetección, GIS y eficiencia energética.<br>Mis habilidades incluyen solidaridad, empatía, iniciativa, trabajo en equipo y pasión por la enseñanza, lo que me permite colaborar con mis colegas en equipo y desarrollar soluciones creativas y efectivas en el campo de la gestión de recursos naturales. Además, mis conocimientos avanzados en programación, estadística y software GIS, así como en manejo de sistemas operativos y software de análisis y simulación dinámica, me permiten aplicar tecnología innovadora para el análisis y gestión de datos geográficos.<br>Cuento con una larga trayectoria en proyectos de investigación tanto dentro como fuera de la Universidad de Chile lo que me ha permitido presentar en diversos congresos y publicar en prestigiosas revistas científicas. Si estás buscando a alguien con una sólida formación en ciencias y experiencia en el uso de herramientas tecnológicas para la gestión de recursos naturales, estaré encantado de hablar contigo.';
     const paragraphs = aboutDetails.split('<br>').map(paragraph => `<p>${paragraph}</p>`).join('');
 
-    const skills = ['HTML', 'CSS', 'JavaScript', 'React', 'Node.js'];
+    const skillsIntroduction = 'Solidaridad, empatía, escucha activa, trabajo en equipo, iniciativa, compromiso, empoderamiento, pasión por la enseñanza.'
+    const skills = {
+        'Software GIS QGis, ArcView, ArcGis e IDRISI': 6,
+        'Operador Windows con énfasis en Office': 6,
+        'Lenguaje de programación R y GUI RStudio & RStudio Server': 6,
+        'Software de simulación Stella y Vensim': 5,
+        'Software estadísticos MINITAB, SPSS y STATA': 4,
+        'Lenguajes VBA, Python, ASP, HTML, CSS, SQL y JavaScript': 4,
+        'Modelación de contaminantes SCREEN 3 y ALOHA': 4,
+        'Arduino IDE y Hardware Arduino': 3,
+        'Licencia de conducir clase B': 6
+    };
 
     const educationDetails = [
         {
@@ -118,9 +129,19 @@ window.onload = function() {
 
     const skillsSection = document.getElementById('skills');
     skillsSection.innerHTML += '<h2>Habilidades</h2>';
-    skills.forEach((skill) => {
-        skillsSection.innerHTML += `<p>${skill}</p>`;
-    });
+    skillsSection.innerHTML += `<p>${skillsIntroduction}</p>`;
+    for (const [skill, rating] of Object.entries(skills)) {
+        let ratingPercentage = (rating / 6) * 100;
+
+        skillsSection.innerHTML += `
+            <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                <div style="background-color: #ccc; height: 10px; width: 100px; margin-right: 10px;">
+                    <div style="background-color: #4caf50; height: 100%; width: ${ratingPercentage}%;"></div>
+                </div>
+                <span>${skill}</span>
+            </div>
+        `;
+    }
 
     const educationSection = document.getElementById('education');
     educationSection.innerHTML += '<h2>Educación</h2>';
