@@ -19,7 +19,7 @@ header {
     text-align: center;
 }
 
-header h1, header h2{
+header h1, header h2, footer h2{
     color:#f0f0f0;
 }
 
@@ -96,4 +96,14 @@ footer {
 footer p a {
     color: #fff;
     text-decoration: none;
+}
+
+#contactContainer {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+#contactContainer p {
+    margin: 0;
 }

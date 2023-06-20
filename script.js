@@ -143,6 +143,10 @@ window.onload = function() {
     // Aquí comienza el nuevo código para el footer
     const footer = document.getElementById('footer');
 
+    // Crear el contenedor para los datos de contacto
+    let contactContainer = document.createElement('div');
+    contactContainer.setAttribute('id', 'contactContainer');
+
     // Crear el elemento h2 y añadir texto
     let h2 = document.createElement('h2');
     h2.innerText = 'Contacto';
@@ -153,23 +157,30 @@ window.onload = function() {
     let p = document.createElement('p');
     let a = document.createElement('a');
     a.setAttribute('href', `mailto:${contactDetails.email}`);
-    a.innerText = contactDetails.email;
+    a.innerHTML = '<i class="fas fa-envelope"></i> ' + contactDetails.email; // aquí añadimos el icono de email
     p.appendChild(a);
-    // Añadir el párrafo al pie de página
-    footer.appendChild(p);
+    // Añadir el párrafo al contenedor de contacto
+    contactContainer.appendChild(p);
 
     // Crear el párrafo para el teléfono
     let pPhone = document.createElement('p');
-    pPhone.innerText = `Teléfono: ${contactDetails.phone}`;
-    // Añadir el párrafo al pie de página
-    footer.appendChild(pPhone);
+    let aPhone = document.createElement('a');
+    aPhone.setAttribute('href', `https://wa.me/${contactDetails.phone}`); // enlace a WhatsApp
+    aPhone.innerHTML = '<i class="fas fa-phone"></i> ' + contactDetails.phone; // aquí añadimos el icono de teléfono
+    pPhone.appendChild(aPhone);
+    // Añadir el párrafo al contenedor de contacto
+    contactContainer.appendChild(pPhone);
 
     // Crear el párrafo y el enlace para LinkedIn
     let pLinkedIn = document.createElement('p');
     let aLinkedIn = document.createElement('a');
     aLinkedIn.setAttribute('href', contactDetails.linkedIn);
-    aLinkedIn.innerText = 'Guillermo S. Fuentes-Jaque';
+    aLinkedIn.innerHTML = '<i class="fab fa-linkedin"></i> Guillermo S. Fuentes-Jaque'; // aquí añadimos el icono de LinkedIn
     pLinkedIn.appendChild(aLinkedIn);
-    // Añadir el párrafo al pie de página
-    footer.appendChild(pLinkedIn);
+    // Añadir el párrafo al contenedor de contacto
+    contactContainer.appendChild(pLinkedIn);
+
+    // Añadir el contenedor de contacto al pie de página
+    footer.appendChild(contactContainer);
+
 };
