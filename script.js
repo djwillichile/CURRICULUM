@@ -102,9 +102,9 @@ window.onload = function() {
 
 
     const contactDetails = {
-        email: 'juan.perez@example.com',
-        phone: '123-456-7890',
-        linkedIn: 'https://www.linkedin.com/in/juanperez'
+        email: 'g.fuentes@renare.uchile.cl',
+        phone: '+56986876932',
+        linkedIn: 'https://www.linkedin.com/in/guillermo-fuentes-jaque'
     };
 
     const navigation = document.getElementById('navigation');
