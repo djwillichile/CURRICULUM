@@ -168,7 +168,7 @@ window.onload = function() {
     let pLinkedIn = document.createElement('p');
     let aLinkedIn = document.createElement('a');
     aLinkedIn.setAttribute('href', contactDetails.linkedIn);
-    aLinkedIn.innerText = 'Juan Pérez';
+    aLinkedIn.innerText = 'Guillermo S. Fuentes-Jaque';
     pLinkedIn.appendChild(aLinkedIn);
     // Añadir el párrafo al pie de página
     footer.appendChild(pLinkedIn);
