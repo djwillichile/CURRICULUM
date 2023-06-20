@@ -98,12 +98,12 @@ footer p a {
     text-decoration: none;
 }
 
-#contactContainer {
+#contact {
     display: flex;
     justify-content: center;
     gap: 20px;
 }
 
-#contactContainer p {
+#contact p {
     margin: 0;
 }

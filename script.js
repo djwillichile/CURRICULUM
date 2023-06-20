@@ -1,5 +1,5 @@
 window.onload = function() {
-    const navLinks = ['About', 'Skills', 'Education', 'Experience', 'Projects'];
+    const navLinks = ['About', 'Skills', 'Education', 'Experience', 'Projects', 'Contact'];
 
     const introduction = {
         name: 'Guillermo Servando Fuentes Jaque',
@@ -145,7 +145,7 @@ window.onload = function() {
 
     // Crear el contenedor para los datos de contacto
     let contactContainer = document.createElement('div');
-    contactContainer.setAttribute('id', 'contactContainer');
+    contactContainer.setAttribute('id', 'contact');
 
     // Crear el elemento h2 y añadir texto
     let h2 = document.createElement('h2');
