@@ -95,7 +95,7 @@ section {
     margin: 20px;
     padding: 20px;
     background: 
-        linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)),
+        linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95)),
         url('IMG/BG1.jpg');
     background-color: #fff;
     background-attachment: fixed;  
