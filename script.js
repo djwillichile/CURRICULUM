@@ -32,7 +32,7 @@ window.onload = function() {
         {
             degree: 'Ingeniería en Recursos Naturales Renovables',
             institution: 'Facultad de Ciencias Agronómicas, Universidad de Chile',
-            year: '2022',
+            year: '2021',
         },
         {
             degree: 'Licenciatura en ciencias de los Recursos Naturales Renovables',
