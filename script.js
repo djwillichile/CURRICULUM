@@ -1,5 +1,5 @@
 window.onload = function() {
-    const navLinks = ['About', 'Skills', 'Education', 'Experience', 'Projects', 'Contact'];
+    const navLinks = ['About', 'Experience', 'Education', 'Skills', 'Projects', 'Contact'];
 
 
 
