@@ -1,6 +1,8 @@
 window.onload = function() {
     const navLinks = ['About', 'Skills', 'Education', 'Experience', 'Projects', 'Contact'];
 
+
+
     const introduction = {
         name: 'Guillermo Servando Fuentes Jaque',
         profession: 'Geomática, teledetección, estadística, programación',
@@ -128,14 +130,14 @@ window.onload = function() {
     document.getElementById('about').innerHTML += `<h2>Acerca de mí</h2>${paragraphs}`;
 
     const skillsSection = document.getElementById('skills');
-    skillsSection.innerHTML += '<h2>Habilidades</h2>';
+    skillsSection.innerHTML += '<h2>Habilidades y herramientas</h2>';
     skillsSection.innerHTML += `<p>${skillsIntroduction}</p>`;
     for (const [skill, rating] of Object.entries(skills)) {
         let ratingPercentage = (rating / 6) * 100;
 
         skillsSection.innerHTML += `
             <div style="display: flex; align-items: center; margin-bottom: 10px;">
-                <div style="background-color: #ccc; height: 10px; width: 100px; margin-right: 10px;">
+                <div style="background-color: #ccc; height: 10px; width: 100px; margin-right: 10px;max-width:100px;min-width:100px;">
                     <div style="background-color: #4caf50; height: 100%; width: ${ratingPercentage}%;"></div>
                 </div>
                 <span>${skill}</span>
@@ -150,7 +152,7 @@ window.onload = function() {
     });
 
     const experienceSection = document.getElementById('experience');
-    experienceSection.innerHTML += '<h2>Experiencia</h2>';
+    experienceSection.innerHTML += '<h2>Experiencia destacada</h2>';
     experienceDetails.forEach((detail) => {
         experienceSection.innerHTML += `<h3>${detail.jobTitle}</h3><p>${detail.description}, ${detail.company}, ${detail.year}</p>`;
     });

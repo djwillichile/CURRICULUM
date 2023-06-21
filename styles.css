@@ -140,7 +140,7 @@ footer p a {
 
     #skills > div {
         display: grid;
-        grid-template-columns: auto 1fr;
+        grid-template-columns: auto 1.5fr;
         align-items: center;
     }
 
