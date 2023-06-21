@@ -137,7 +137,7 @@ window.onload = function() {
 
         skillsSection.innerHTML += `
             <div style="display: flex; align-items: center; margin-bottom: 10px;">
-                <div style="background-color: #ccc; height: 10px; width: 100px; margin-right: 10px;max-width:100px;min-width:100px;">
+                <div style="background-color: #ccc; height: 10px; width: 90px; margin-right: 10px;max-width:90px;min-width:90px;">
                     <div style="background-color: #4caf50; height: 100%; width: ${ratingPercentage}%;"></div>
                 </div>
                 <span>${skill}</span>
