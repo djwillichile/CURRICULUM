@@ -137,7 +137,7 @@ window.onload = function() {
 
         skillsSection.innerHTML += `
             <div style="display: flex; align-items: center; margin-bottom: 10px;">
-                <div style="background-color: #ccc; height: 10px; width: 90px; margin-right: 10px;max-width:90px;min-width:90px;">
+                <div style="background-color: #ccc; height: 10px; width: 90px; margin-right: 10px;max-width: 90px;min-width: 90px;">
                     <div style="background-color: #4caf50; height: 100%; width: ${ratingPercentage}%;"></div>
                 </div>
                 <span>${skill}</span>
@@ -180,6 +180,7 @@ window.onload = function() {
     let p = document.createElement('p');
     let a = document.createElement('a');
     a.setAttribute('href', `mailto:${contactDetails.email}`);
+    a.setAttribute('target', '_blank');
     a.innerHTML = '<i class="fas fa-envelope"></i> ' + contactDetails.email; // aquí añadimos el icono de email
     p.appendChild(a);
     // Añadir el párrafo al contenedor de contacto
@@ -188,6 +189,7 @@ window.onload = function() {
     // Crear el párrafo para el teléfono
     let pPhone = document.createElement('p');
     let aPhone = document.createElement('a');
+    aPhone.setAttribute('target', '_blank');
     aPhone.setAttribute('href', `https://wa.me/${contactDetails.phone}`); // enlace a WhatsApp
     aPhone.innerHTML = '<i class="fas fa-phone"></i> ' + contactDetails.phone; // aquí añadimos el icono de teléfono
     pPhone.appendChild(aPhone);
@@ -197,6 +199,7 @@ window.onload = function() {
     // Crear el párrafo y el enlace para LinkedIn
     let pLinkedIn = document.createElement('p');
     let aLinkedIn = document.createElement('a');
+    aLinkedIn.setAttribute('target', '_blank');
     aLinkedIn.setAttribute('href', contactDetails.linkedIn);
     aLinkedIn.innerHTML = '<i class="fab fa-linkedin"></i> Guillermo S. Fuentes-Jaque'; // aquí añadimos el icono de LinkedIn
     pLinkedIn.appendChild(aLinkedIn);
