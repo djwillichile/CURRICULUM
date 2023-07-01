@@ -12,18 +12,13 @@ window.addEventListener('DOMContentLoaded', function() {
   
   // Agregar ventana de carga al cuerpo del documento
   document.body.appendChild(loadingDiv);
-  
-  // Mostrar la estructura del HTML después de un cierto tiempo simulado
-  setTimeout(function() {
-    // Eliminar ventana de carga
-    document.body.removeChild(loadingDiv);
-    
-    // Mostrar la estructura del HTML
-    // Aquí puedes agregar tu código existente para agregar contenido con JavaScript
-  }, 1300); // Tiempo de espera simulado en milisegundos (en este caso, 3 segundos)
 });
 
 window.onload = function() {
+    
+    var loadingDiv = document.getElementById('loading');
+    document.body.removeChild(loadingDiv);
+
     const navLinks = ['About', 'Experience', 'Education', 'Skills', 'Projects', 'publications', 'Contact'];
     const navLinksEsp = ['Sobre mí', 'Experiencia', 'Formación', 'Habilidades', 'Proyectos', 'Artículos', 'Contacto'];
 
