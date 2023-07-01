@@ -25,8 +25,46 @@ window.addEventListener('DOMContentLoaded', function() {
 
 window.onload = function() {
     const navLinks = ['About', 'Experience', 'Education', 'Skills', 'Projects', 'Contact'];
+    const navLinksEsp = ['Acerca de mi', 'Experiencia', 'Educación', 'Habilidades', 'Proyectos', 'Contacto'];
 
+    // Create a new button element
+    let toTopBtn = document.createElement("button");
 
+    // Add attributes to the button
+    toTopBtn.setAttribute("id", "toTopBtn");
+    toTopBtn.setAttribute("title", "Go to top");
+
+    // Create a new i element for the Font Awesome icon
+    let icon = document.createElement("i");
+
+    // Add the Font Awesome classes to the i element
+    icon.classList.add("fas");
+    icon.classList.add("fa-arrow-up");
+
+    // Append the icon to the button
+    toTopBtn.appendChild(icon);
+
+    // Append the button to the body of the document
+    document.body.appendChild(toTopBtn);
+
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function() {
+        scrollFunction();
+    };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            toTopBtn.style.display = "block";
+        } else {
+            toTopBtn.style.display = "none";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    toTopBtn.addEventListener('click', function() {
+        document.body.scrollTop = 0; // For Safari
+        document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+    });
 
     const introduction = {
         name: 'Guillermo Servando Fuentes Jaque',
@@ -257,8 +295,8 @@ window.onload = function() {
     };
 
     const navigation = document.getElementById('navigation');
-    navLinks.forEach((link) => {
-        navigation.innerHTML += `<li><a href="#${link.toLowerCase()}">${link}</a></li>`;
+    navLinks.forEach((link, index) => {
+        navigation.innerHTML += `<li><a href="#${link.toLowerCase()}">${navLinksEsp[index]}</a></li>`;
     });
 
     document.getElementById('introduction').innerHTML += `<h1>${introduction.name}</h1><h2>${introduction.profession}</h2><p>${introduction.description}</p>`;
