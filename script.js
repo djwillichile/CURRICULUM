@@ -20,7 +20,7 @@ window.addEventListener('DOMContentLoaded', function() {
     
     // Mostrar la estructura del HTML
     // Aquí puedes agregar tu código existente para agregar contenido con JavaScript
-  }, 1000); // Tiempo de espera simulado en milisegundos (en este caso, 3 segundos)
+  }, 1300); // Tiempo de espera simulado en milisegundos (en este caso, 3 segundos)
 });
 
 window.onload = function() {
