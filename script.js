@@ -25,7 +25,7 @@ window.addEventListener('DOMContentLoaded', function() {
 
 window.onload = function() {
     const navLinks = ['About', 'Experience', 'Education', 'Skills', 'Projects', 'publications', 'Contact'];
-    const navLinksEsp = ['Acerca de mi', 'Experiencia', 'Educación', 'Habilidades', 'Proyectos', 'Publicaciones', 'Contacto'];
+    const navLinksEsp = ['Sobre mí', 'Experiencia', 'Formación', 'Habilidades', 'Proyectos', 'Artículos', 'Contacto'];
 
     // Create a new button element
     let toTopBtn = document.createElement("button");
