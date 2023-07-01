@@ -24,8 +24,8 @@ window.addEventListener('DOMContentLoaded', function() {
 });
 
 window.onload = function() {
-    const navLinks = ['About', 'Experience', 'Education', 'Skills', 'Projects', 'Contact'];
-    const navLinksEsp = ['Acerca de mi', 'Experiencia', 'Educación', 'Habilidades', 'Proyectos', 'Contacto'];
+    const navLinks = ['About', 'Experience', 'Education', 'Skills', 'Projects', 'publications', 'Contact'];
+    const navLinksEsp = ['Acerca de mi', 'Experiencia', 'Educación', 'Habilidades', 'Proyectos', 'Publicaciones', 'Contacto'];
 
     // Create a new button element
     let toTopBtn = document.createElement("button");
