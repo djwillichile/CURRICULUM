@@ -1,3 +1,28 @@
+window.addEventListener('DOMContentLoaded', function() {
+  // Crear elemento de ventana de carga
+  var loadingDiv = document.createElement('div');
+  loadingDiv.setAttribute('id', 'loading');
+  
+  // Crear elemento de círculo giratorio
+  var spinner = document.createElement('div');
+  spinner.setAttribute('class', 'spinner');
+  
+  // Agregar círculo giratorio al elemento de ventana de carga
+  loadingDiv.appendChild(spinner);
+  
+  // Agregar ventana de carga al cuerpo del documento
+  document.body.appendChild(loadingDiv);
+  
+  // Mostrar la estructura del HTML después de un cierto tiempo simulado
+  setTimeout(function() {
+    // Eliminar ventana de carga
+    document.body.removeChild(loadingDiv);
+    
+    // Mostrar la estructura del HTML
+    // Aquí puedes agregar tu código existente para agregar contenido con JavaScript
+  }, 1000); // Tiempo de espera simulado en milisegundos (en este caso, 3 segundos)
+});
+
 window.onload = function() {
     const navLinks = ['About', 'Experience', 'Education', 'Skills', 'Projects', 'Contact'];
 
