@@ -20,8 +20,8 @@ const experienceDetails = [
     {
         jobTitle: 'Profesor colaborador',
         company: 'Universidad de Chile, Región Metropolitana',
-        year: '2019 - 2022',
-        description: 'Cursos Fundamentos de sistemas de Información Geográfica (2019-2021) y Fundamentos de Teledetección (2020-2022), Facultad de Ciencias Agronómicas'
+        year: '2019 - 2023',
+        description: 'Cursos Fundamentos de sistemas de Información Geográfica (2019-2023) y Fundamentos de Teledetección (2020-2022), Facultad de Ciencias Agronómicas'
     },
     {
         jobTitle: 'Investigador',
@@ -84,8 +84,8 @@ const fullExperienceDetails = [
     {
         jobTitle: 'Profesor instructor',
         company: 'Universidad de Chile',
-        year: '2019 - 2022',
-        description: 'Cursos Fundamentos de sistemas de Información Geográfica (2019-2022), Fundamentos de Teledetección (2020-2022), Teoría de Sistemas y Modelamiento Ambiental (2019-2021), Física II (2019-2022) y Física Ambiental (2019-2022), Física Aplicada (2022), Percepción Remota (2022), Facultad de Ciencias Agronómicas'
+        year: '2019 - 2023',
+        description: 'Cursos Fundamentos de sistemas de Información Geográfica (2019-2023), Fundamentos de Teledetección (2020-2022), Teoría de Sistemas y Modelamiento Ambiental (2019-2021), Física II (2019-2022) y Física Ambiental (2019-2022), Física Aplicada (2022), Percepción Remota (2022-2023), Facultad de Ciencias Agronómicas'
     },
     {
         jobTitle: 'Investigador',
