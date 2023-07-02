@@ -232,4 +232,5 @@ window.onload = function() {
     // Añadir el contenedor de contacto al pie de página
     footer.appendChild(contactContainer);
 
+    contactContainer.insertAdjacentHTML('afterend', '<br><p>Autor: Guillermo S. Fuentes-Jaque, 2023. Todos los derechos reservados.</p>');
 };
