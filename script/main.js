@@ -232,5 +232,5 @@ window.onload = function() {
     // Añadir el contenedor de contacto al pie de página
     footer.appendChild(contactContainer);
 
-    contactContainer.insertAdjacentHTML('afterend', '<br><p>Autor: Guillermo S. Fuentes-Jaque, 2023. Todos los derechos reservados.</p>');
+    contactContainer.insertAdjacentHTML('afterend', '<br><p>&copy; Guillermo S. Fuentes-Jaque, 2023. Todos los derechos reservados. <a href="docs/CV_GSFJ_rev_2022-06-30_ESP.pdf" download="Curriculum_Juan_Perez.pdf">Descargar currículum en PDF</a></p>');
 };
