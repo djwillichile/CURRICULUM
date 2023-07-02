@@ -55,8 +55,8 @@ window.onload = function() {
     let icon = document.createElement("i");
 
     // Add the Font Awesome classes to the i element
-    icon.classList.add("fas");
-    icon.classList.add("fa-arrow-up");
+    icon.classList.add("fa-solid");
+    icon.classList.add("fa-angles-up");
 
     // Append the icon to the button
     toTopBtn.appendChild(icon);
