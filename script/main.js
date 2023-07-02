@@ -139,7 +139,7 @@ window.onload = function() {
         // Comprueba si los cursos ya están mostrándose
         if (showCoursesLink.textContent === "Mostrar cursos") {
             // Cambia el texto del enlace
-            showCoursesLink.textContent = "Dejar de mostrar cursos";
+            showCoursesLink.textContent = "Contraer cursos";
 
             // Añade los cursos
             coursesContainer.innerHTML = '<br><hr style="border: none; border-top: 3px solid rgba(128, 128, 128, 0.5);">'
