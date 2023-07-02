@@ -37,7 +37,7 @@ scripts.forEach(function(src) {
 window.onload = function() {
     var loadingDiv = document.getElementById('loading');
 
-    setTimeout(function() {document.body.removeChild(loadingDiv)}, 500)
+    setTimeout(function() {document.body.removeChild(loadingDiv)}, 400)
     
     
 
