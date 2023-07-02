@@ -194,7 +194,7 @@ window.onload = function() {
     let a = document.createElement('a');
     a.setAttribute('href', `mailto:${contactDetails.email}`);
     a.setAttribute('target', '_blank');
-    a.innerHTML = '<i class="fas fa-envelope"></i> ' + contactDetails.email; // aquí añadimos el icono de email
+    a.innerHTML = '<i class="fas fa-envelope fa-fade"></i> ' + contactDetails.email; // aquí añadimos el icono de email
     p.appendChild(a);
     // Añadir el párrafo al contenedor de contacto
     contactContainer.appendChild(p);
@@ -204,7 +204,7 @@ window.onload = function() {
     let aPhone = document.createElement('a');
     aPhone.setAttribute('target', '_blank');
     aPhone.setAttribute('href', `https://wa.me/${contactDetails.phone}`); // enlace a WhatsApp
-    aPhone.innerHTML = '<i class="fas fa-phone"></i> ' + contactDetails.phone; // aquí añadimos el icono de teléfono
+    aPhone.innerHTML = '<i class="fas fa-phone fa-fade"></i> ' + contactDetails.phone; // aquí añadimos el icono de teléfono
     pPhone.appendChild(aPhone);
     // Añadir el párrafo al contenedor de contacto
     contactContainer.appendChild(pPhone);
@@ -214,7 +214,7 @@ window.onload = function() {
     let aLinkedIn = document.createElement('a');
     aLinkedIn.setAttribute('target', '_blank');
     aLinkedIn.setAttribute('href', contactDetails.linkedIn);
-    aLinkedIn.innerHTML = '<i class="fab fa-linkedin"></i> Guillermo S. Fuentes-Jaque'; // aquí añadimos el icono de LinkedIn
+    aLinkedIn.innerHTML = '<i class="fab fa-linkedin fa-fade"></i> Guillermo S. Fuentes-Jaque'; // aquí añadimos el icono de LinkedIn
     pLinkedIn.appendChild(aLinkedIn);
     // Añadir el párrafo al contenedor de contacto
     contactContainer.appendChild(pLinkedIn);
@@ -224,7 +224,7 @@ window.onload = function() {
     let aInsta = document.createElement('a');
     aInsta.setAttribute('target', '_blank');
     aInsta.setAttribute('href', `${contactDetails.instagram}`); // enlace a WhatsApp
-    aInsta.innerHTML = '<i class="fab fa-instagram"></i> @guillermo.fuentes.j'; // aquí añadimos el icono de teléfono
+    aInsta.innerHTML = '<i class="fa-brands fa-square-instagram fa-fade"></i> @guillermo.fuentes.j'; // aquí añadimos el icono de teléfono
     pInsta.appendChild(aInsta);
     // Añadir el párrafo al contenedor de contacto
     contactContainer.appendChild(pInsta);
