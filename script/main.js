@@ -159,7 +159,7 @@ window.onload = function() {
 
     const experienceSection = document.getElementById('experience');
     // Añade el encabezado y el enlace
-    experienceSection.innerHTML = '<h2>Experiencia destacada (resumen) <a id="toggleExperience" href="#" style="margin-left: 10px; font-size: 0.8em;">Mostrar toda la experiencia</a></h2>';
+    experienceSection.innerHTML = '<h2>Experiencia destacada (resumen) <a id="toggleExperience" href="#" style="margin-left: 10px; font-size: 0.8em;">Mostrar más experiencia</a></h2>';
     let isShowingFullExperience = false;
 
     const toggleExperience = () => {
@@ -170,7 +170,7 @@ window.onload = function() {
 
         // Cambia el estado y muestra la experiencia adecuada
         if (isShowingFullExperience) {
-            experienceSection.innerHTML = '<h2>Experiencia destacada (resumen) <a id="toggleExperience" href="#" style="margin-left: 10px; font-size: 0.8em;">Mostrar toda la experiencia</a></h2>';
+            experienceSection.innerHTML = '<h2>Experiencia destacada (resumen) <a id="toggleExperience" href="#" style="margin-left: 10px; font-size: 0.8em;">Mostrar más experiencia</a></h2>';
             addExperienceDetails(experienceDetails);
             isShowingFullExperience = false;
         } else {
