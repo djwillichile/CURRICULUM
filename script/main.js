@@ -93,7 +93,8 @@ window.onload = function() {
     const contactDetails = {
         email: 'g.fuentes@renare.uchile.cl',
         phone: '+56986876932',
-        linkedIn: 'https://www.linkedin.com/in/guillermo-fuentes-jaque'
+        linkedIn: 'https://www.linkedin.com/in/guillermo-fuentes-jaque',
+        instagram: 'https://www.instagram.com/guillermo.fuentes.j'
     };
 
     const navigation = document.getElementById('navigation');
@@ -217,6 +218,16 @@ window.onload = function() {
     pLinkedIn.appendChild(aLinkedIn);
     // Añadir el párrafo al contenedor de contacto
     contactContainer.appendChild(pLinkedIn);
+
+    // Crear el párrafo para el instagram
+    let pInsta = document.createElement('p');
+    let aInsta = document.createElement('a');
+    aInsta.setAttribute('target', '_blank');
+    aInsta.setAttribute('href', `${contactDetails.instagram}`); // enlace a WhatsApp
+    aInsta.innerHTML = '<i class="fab fa-instagram"></i> @guillermo.fuentes.j'; // aquí añadimos el icono de teléfono
+    pInsta.appendChild(aInsta);
+    // Añadir el párrafo al contenedor de contacto
+    contactContainer.appendChild(pInsta);
 
     // Añadir el contenedor de contacto al pie de página
     footer.appendChild(contactContainer);
