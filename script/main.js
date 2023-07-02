@@ -168,6 +168,13 @@ window.onload = function() {
         projectsSection.innerHTML += `<h3>${project.title}</h3><p>${project.description}</p><p><a href="${project.link}">Ver proyecto</a></p>`;
     });
 
+    const publicationsSection = document.getElementById("publications");
+    publicationsSection.innerHTML += '<h2>Artículos publicados</h2>';
+    publicationsDetails.forEach(publication => {
+        publicationsSection.innerHTML += `<h3>${publication.author} (${publication.year})</h3>
+        <p>${publication.title} <a target="_blank" href="${publication.link}">Artículo</a></p>`;
+    });
+
     // Aquí comienza el nuevo código para el footer
     const footer = document.getElementById('footer');
 
