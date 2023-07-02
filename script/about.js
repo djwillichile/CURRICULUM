@@ -1,6 +1,6 @@
 const introduction = {
     name: 'Guillermo Servando Fuentes Jaque',
-    profession: 'Geomática - Teledetección - Estadística - Programación',
+    profession: 'Geomática; Teledetección; Estadística; Programación',
     description: 'Apasionado por la enseñanza y la aplicación de tecnologías avanzadas en gestión territorial, destacándome en análisis espacial, programación, ciencia de datos y modelado ambiental. Amo el ciclismo y el aprendizaje constante.'
 };
 
