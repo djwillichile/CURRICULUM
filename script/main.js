@@ -35,9 +35,11 @@ scripts.forEach(function(src) {
 });
 
 window.onload = function() {
-
     var loadingDiv = document.getElementById('loading');
-    document.body.removeChild(loadingDiv);
+
+    setTimeout(function() {document.body.removeChild(loadingDiv)}, 500)
+    
+    
 
     const navLinks = ['About', 'Experience', 'Education', 'Skills', 'Projects', 'publications', 'Contact'];
     const navLinksEsp = ['Sobre mí', 'Experiencia', 'Formación', 'Habilidades', 'Proyectos', 'Artículos', 'Contacto'];
