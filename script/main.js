@@ -120,7 +120,7 @@ window.onload = function() {
 
 
     const educationSection = document.getElementById('education');
-    educationSection.innerHTML += '<h2>Antecedentes académicos <a id="showCourses" href="#" style="margin-left: 10px;">Mostrar cursos</a></h2>';
+    educationSection.innerHTML += '<h2>Formación académica <a id="showCourses" href="#" style="margin-left: 10px;">Mostrar cursos</a></h2>';
     educationDetails.forEach((detail) => {
         educationSection.innerHTML += `<h3>${detail.degree}</h3><p>${detail.institution}, ${detail.year}</p>`;
     });
@@ -143,7 +143,7 @@ window.onload = function() {
 
             // Añade los cursos
             coursesContainer.innerHTML = '<br><hr style="border: none; border-top: 3px solid rgba(128, 128, 128, 0.5);">'
-                                       + '<br><h2>Cursos</h2>';
+                                       + '<br><h2>Formación Complementaria</h2>';
             courses.forEach((course) => {
                 coursesContainer.innerHTML += `<h3>${course.nombre}</h3><p>${course.organizacion}, ${course.ubicacion}, ${course.año}</p>`;
             });
