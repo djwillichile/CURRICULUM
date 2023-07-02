@@ -111,19 +111,16 @@ window.onload = function() {
     for (const [skill, rating] of Object.entries(skills)) {
         let ratingPercentage = (rating / 6) * 100;
 
-        skillsSection.innerHTML += `
-            <div class="skill-row">
-                <div class="skill-track">
-                    <div class="skill-bar" style="width: ${ratingPercentage}%;"></div>
-                </div>
-                <span class="skill-name">${skill}</span>
-            </div>
-        `;
+        skillsSection.appendChild(Object.assign(document.createElement('div'), {
+            className: 'skill-row',
+            innerHTML: `<div class="skill-track"><div class="skill-bar" style="width: ${ratingPercentage}%">
+            </div></div><span class="skill-name">${skill}</span>`
+        }));
     }
 
 
     const educationSection = document.getElementById('education');
-    educationSection.innerHTML += '<h2>Educación <a id="showCourses" href="#" style="margin-left: 10px;">Mostrar cursos</a></h2>';
+    educationSection.innerHTML += '<h2>Antecedentes académicos <a id="showCourses" href="#" style="margin-left: 10px;">Mostrar cursos</a></h2>';
     educationDetails.forEach((detail) => {
         educationSection.innerHTML += `<h3>${detail.degree}</h3><p>${detail.institution}, ${detail.year}</p>`;
     });
@@ -145,7 +142,8 @@ window.onload = function() {
             showCoursesLink.textContent = "Dejar de mostrar cursos";
 
             // Añade los cursos
-            coursesContainer.innerHTML = '<h2>Cursos</h2>';
+            coursesContainer.innerHTML = '<br><hr style="border: none; border-top: 3px solid rgba(128, 128, 128, 0.5);">'
+                                       + '<br><h2>Cursos</h2>';
             courses.forEach((course) => {
                 coursesContainer.innerHTML += `<h3>${course.nombre}</h3><p>${course.organizacion}, ${course.ubicacion}, ${course.año}</p>`;
             });
