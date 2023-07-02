@@ -124,6 +124,30 @@ footer p a {
     text-decoration: none;
 }
 
+
+.skill-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.skill-track {
+    background-color: #ccc;
+    height: 10px;
+    width: 90px;
+    margin-right: 10px;
+}
+
+.skill-bar {
+    background-color: #4caf50;
+    height: 100%;
+}
+
+.skill-name {
+    /* Aquí puedes agregar cualquier estilo que desees para el nombre de la habilidad */
+}
+
+
 #contact {
     display: flex;
     justify-content: center;
