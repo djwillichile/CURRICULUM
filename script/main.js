@@ -158,9 +158,53 @@ window.onload = function() {
     });
 
     const experienceSection = document.getElementById('experience');
-    experienceSection.innerHTML += '<h2>Experiencia destacada</h2>';
-    experienceDetails.forEach((detail) => {
-        experienceSection.innerHTML += `<h3>${detail.jobTitle}</h3><p>${detail.description}, ${detail.company}, ${detail.year}</p>`;
+    // Añade el encabezado y el enlace
+    experienceSection.innerHTML = '<h2>Experiencia destacada (resumen) <a id="toggleExperience" href="#" style="margin-left: 10px; font-size: 0.8em;">Mostrar toda la experiencia</a></h2>';
+    let isShowingFullExperience = false;
+
+    const toggleExperience = () => {
+        // Vaciar la sección de experiencia
+        while (experienceSection.firstChild) {
+            experienceSection.removeChild(experienceSection.firstChild);
+        }
+
+        // Cambia el estado y muestra la experiencia adecuada
+        if (isShowingFullExperience) {
+            experienceSection.innerHTML = '<h2>Experiencia destacada (resumen) <a id="toggleExperience" href="#" style="margin-left: 10px; font-size: 0.8em;">Mostrar toda la experiencia</a></h2>';
+            addExperienceDetails(experienceDetails);
+            isShowingFullExperience = false;
+        } else {
+            experienceSection.innerHTML = '<h2>Experiencia<a id="toggleExperience" href="#" style="margin-left: 10px; font-size: 0.8em;">Mostrar solo experiencia destacada</a></h2>';
+            addExperienceDetails(fullExperienceDetails);
+            isShowingFullExperience = true;
+        }
+
+        // Vuelve a adjuntar el controlador de eventos al enlace
+        document.getElementById("toggleExperience").addEventListener('click', function (event) {
+            event.preventDefault();
+            toggleExperience();
+        });
+    }
+
+    const addExperienceDetails = (details) => {
+        details.forEach((detail) => {
+            let h3 = document.createElement("h3");
+            h3.textContent = detail.jobTitle + ' (' + detail.year + ')';
+            experienceSection.appendChild(h3);
+
+            let p = document.createElement("p");
+            p.textContent = `${detail.description}, ${detail.company}`;
+            experienceSection.appendChild(p);
+        });
+    }
+
+    // Añade detalles de experiencia destacada al principio
+    addExperienceDetails(experienceDetails);
+
+    // Adjunta el controlador de eventos al enlace
+    document.getElementById("toggleExperience").addEventListener('click', function (event) {
+        event.preventDefault();
+        toggleExperience();
     });
 
     const projectsSection = document.getElementById('projects');
