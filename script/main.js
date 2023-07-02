@@ -121,10 +121,41 @@ window.onload = function() {
         `;
     }
 
+
     const educationSection = document.getElementById('education');
-    educationSection.innerHTML += '<h2>Educación</h2>';
+    educationSection.innerHTML += '<h2>Educación <a id="showCourses" href="#" style="margin-left: 10px;">Mostrar cursos</a></h2>';
     educationDetails.forEach((detail) => {
         educationSection.innerHTML += `<h3>${detail.degree}</h3><p>${detail.institution}, ${detail.year}</p>`;
+    });
+
+   // Añade un contenedor para los cursos
+    educationSection.innerHTML += '<div id="coursesContainer"></div>';
+
+    let coursesContainer = document.getElementById('coursesContainer');
+
+    // Seleccionar el enlace y añadir el evento de clic
+    let showCoursesLink = document.getElementById('showCourses');
+    showCoursesLink.addEventListener('click', function(e) {
+        // Evita que el enlace navegue a su href
+        e.preventDefault();
+
+        // Comprueba si los cursos ya están mostrándose
+        if (showCoursesLink.textContent === "Mostrar cursos") {
+            // Cambia el texto del enlace
+            showCoursesLink.textContent = "Dejar de mostrar cursos";
+
+            // Añade los cursos
+            coursesContainer.innerHTML = '<h2>Cursos</h2>';
+            courses.forEach((course) => {
+                coursesContainer.innerHTML += `<h3>${course.nombre}</h3><p>${course.organizacion}, ${course.ubicacion}, ${course.año}</p>`;
+            });
+        } else {
+            // Cambia el texto del enlace
+            showCoursesLink.textContent = "Mostrar cursos";
+
+            // Vacía el contenedor de los cursos
+            coursesContainer.innerHTML = '';
+        }
     });
 
     const experienceSection = document.getElementById('experience');
