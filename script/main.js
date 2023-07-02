@@ -120,7 +120,7 @@ window.onload = function() {
 
 
     const educationSection = document.getElementById('education');
-    educationSection.innerHTML += '<h2>Formación académica <a id="showCourses" href="#" style="margin-left: 10px;">Mostrar cursos</a></h2>';
+    educationSection.innerHTML += '<h2>Formación académica <a id="showCourses" href="#" style="margin-left: 10px; font-size: 0.8em;">Mostrar cursos</a></h2>';
     educationDetails.forEach((detail) => {
         educationSection.innerHTML += `<h3>${detail.degree}</h3><p>${detail.institution}, ${detail.year}</p>`;
     });
