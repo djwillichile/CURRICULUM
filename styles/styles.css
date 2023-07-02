@@ -30,9 +30,7 @@ header {
     text-align: center;
 }
 
-header h1,
-header h2,
-footer h2 {
+header h1, header h2, footer h2 {
     color: #f0f0f0;
 }
 
@@ -62,13 +60,8 @@ nav ul li a {
     padding: 20px;
 }
 
-h1,
-h2,
-h3 {
-    color: #444;
-}
-
 h1 {
+    color: #444;
     font-size: 2em;
     margin-bottom: 15px;
 }
@@ -76,9 +69,11 @@ h1 {
 h2 {
     font-size: 1.5em;
     margin-bottom: 12px;
+    color: #222;
 }
 
 h3 {
+    color: #444;
     font-size: 1.3em;
     margin-bottom: 4px;
 }
