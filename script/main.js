@@ -1,81 +1,167 @@
+document.addEventListener('DOMContentLoaded', initPage);
 
+function initPage() {
+  createLoadingSpinner();
+  loadScriptsSequentially([
+    'about.js', 'education.js', 'skills.js', 'experience.js', 'projects.js', 'publications.js'
+  ], 'script/main.js');
+}
 
-window.addEventListener('DOMContentLoaded', function() {
-  // Crear elemento de ventana de carga
-  var loadingDiv = document.createElement('div');
-  loadingDiv.setAttribute('id', 'loading');
-  
-  // Crear elemento de círculo giratorio
-  var spinner = document.createElement('div');
-  spinner.setAttribute('class', 'spinner');
-  
-  // Agregar círculo giratorio al elemento de ventana de carga
-  loadingDiv.appendChild(spinner);
-  
-  // Agregar ventana de carga al cuerpo del documento
+function createLoadingSpinner() {
+  const spinner = createElement('div', {class: 'spinner'});
+  const loadingDiv = createElement('div', {id: 'loading'}, spinner);
   document.body.appendChild(loadingDiv);
-});
+}
 
-// Array con las URL de los scripts que quieres cargar
-var scripts = ['about.js', 'education.js', 'skills.js', 'experience.js', 'projects.js', 'publications.js'];
+function createElement(tag, attributes, ...children) {
+  const element = document.createElement(tag);
+  for (const key in attributes) {
+    element.setAttribute(key, attributes[key]);
+  }
+  children.forEach(child => {
+    if (typeof child === 'string') {
+      element.appendChild(document.createTextNode(child));
+    } else {
+      element.appendChild(child);
+    }
+  });
+  return element;
+}
 
-// Ubicar el elemento script existente en el head
-var mainScriptTag = document.querySelector('script[src="script/main.js"]');
+function loadScriptsSequentially(scripts, referenceSrc) {
+  const referenceScript = document.querySelector(`script[src="${referenceSrc}"]`);
+  scripts.reduce((prevPromise, src) => {
+    return prevPromise.then(() => {
+      return loadScript(`script/${src}`, referenceScript);
+    });
+  }, Promise.resolve());
+}
 
-scripts.forEach(function(src) {
-    // Crea un nuevo elemento script
-    var scriptTag = document.createElement('script');
-    
-    // Añade el atributo src con la URL del script
-    scriptTag.src = 'script/' + src;
+function loadScript(src, referenceNode) {
+  return new Promise((resolve, reject) => {
+    const script = document.createElement('script');
+    script.src = src;
+    script.onload = resolve;
+    script.onerror = () => reject(new Error(`Script load error for ${src}`));
+    referenceNode.parentNode.insertBefore(script, referenceNode.nextSibling);
+    referenceNode = script;
+  });
+}
 
-    // Inserta el nuevo script después del script 'main.js' en el head
-    mainScriptTag.parentNode.insertBefore(scriptTag, mainScriptTag.nextSibling);
+function removeLoadingDiv() {
+    setTimeout(() => {
+        const loadingDiv = document.getElementById('loading');
+        if (loadingDiv) {
+            document.body.removeChild(loadingDiv);
+        }
+    }, 400);
+}
 
-    // Actualiza mainScriptTag para insertar el siguiente script después del recién insertado
-    mainScriptTag = scriptTag;
-});
+function setupPageElements() {
+    setupNavigationLinks();
+    setupBackToTopButton();
+    setupFooter();
+}
 
-window.onload = function() {
-    var loadingDiv = document.getElementById('loading');
-
-    setTimeout(function() {document.body.removeChild(loadingDiv)}, 400)
-    
-    const navLinks = ['About', 'Experience', 'Education', 'Skills', 'Projects', 'publications', 'Contact'];
+function setupNavigationLinks() {
+    const navLinks = ['About', 'Experience', 'Education', 'Skills', 'Projects', 'Publications', 'Contact'];
     const navLinksEsp = ['Sobre mí', 'Experiencia', 'Formación', 'Habilidades', 'Proyectos', 'Artículos', 'Contacto'];
+    const navigation = document.getElementById('navigation');
 
-    // Create a new button element
-    let toTopBtn = document.createElement("button");
+    navLinks.forEach((link, index) => {
+        const listItem = document.createElement('li');
+        const anchor = document.createElement('a');
+        anchor.href = `#${link.toLowerCase()}`;
+        anchor.textContent = navLinksEsp[index];
+        listItem.appendChild(anchor);
+        navigation.appendChild(listItem);
+    });
+}
 
-    // Add attributes to the button
-    toTopBtn.setAttribute("id", "toTopBtn");
-    toTopBtn.setAttribute("title", "Go to top");
-
-    // Create a new i element for the Font Awesome icon
-    let icon = document.createElement("i");
-
-    // Add the Font Awesome classes to the i element
-    icon.classList.add("fa-solid");
-    icon.classList.add("fa-angles-up");
-
-    // Append the icon to the button
-    toTopBtn.appendChild(icon);
-
-    // Append the button to the body of the document
+function setupBackToTopButton() {
+    const toTopBtn = document.createElement("button");
+    toTopBtn.id = "toTopBtn";
+    toTopBtn.title = "Go to top";
+    toTopBtn.innerHTML = '<i class="fa-solid fa-angles-up"></i>';
     document.body.appendChild(toTopBtn);
 
-    // When the user scrolls down 20px from the top of the document, show the button
-    window.onscroll = function() {
-        scrollFunction();
+    window.onscroll = () => {
+        const shouldShowButton = document.body.scrollTop > 20 || document.documentElement.scrollTop > 20;
+        toTopBtn.style.display = shouldShowButton ? "block" : "none";
     };
 
-    function scrollFunction() {
-        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-            toTopBtn.style.display = "block";
-        } else {
-            toTopBtn.style.display = "none";
-        }
+
+    toTopBtn.onclick = () => {
+        window.scrollTo({top: 0, behavior: 'smooth'});
+    };
+}
+
+function setupFooter() {
+    const footer = document.getElementById('footer');
+    const contactDetails = getContactDetails();
+
+    const contactInfo = document.createElement('div');
+    contactInfo.id = 'contact';
+    footer.appendChild(contactInfo);
+
+    function createContactLink(detail) {
+        const p = document.createElement('p');
+        p.innerHTML = `<a href="${detail.link}" target="_blank"><i class="${detail.icon}"></i> ${detail.text}</a>`;
+        return p;
     }
+
+    Object.keys(contactDetails).forEach(key => {
+        const contactLink = createContactLink(contactDetails[key]);
+        contactInfo.appendChild(contactLink);
+    });
+
+    function addCopyrightElement(footerElement) {
+        const copyright = document.createElement('p');
+        const year = new Date().getFullYear(); // Opcionalmente puedes hacer que el año sea dinámico
+        const linkText = 'Descargar en PDF';
+        const filePath = 'docs/CV_GSFJ_rev_2022-06-30_ESP.pdf';
+
+        // Uso de Template Literal para mejorar la legibilidad
+        const htmlContent = `&copy; Guillermo S. Fuentes-Jaque, ${year}. Todos los derechos reservados.
+                            <a href="${filePath}" download>${linkText}</a>`;
+        
+        copyright.innerHTML = htmlContent;
+        footerElement.appendChild(copyright);
+    }
+
+    // Usando la función en el código principal
+    addCopyrightElement(footer);
+}
+
+function getContactDetails() {
+    return {
+        email: {
+            link: 'mailto:g.fuentes@renare.uchile.cl',
+            text: 'g.fuentes@renare.uchile.cl',
+            icon: 'fas fa-envelope fa-fade'
+        },
+        phone: {
+            link: 'https://wa.me/56986876932',
+            text: '+56986876932',
+            icon: 'fas fa-phone fa-fade'
+        },
+        linkedIn: {
+            link: 'https://www.linkedin.com/in/guillermo-fuentes-jaque',
+            text: 'Guillermo S. Fuentes-Jaque',
+            icon: 'fab fa-linkedin fa-fade'
+        },
+        instagram: {
+            link: 'https://www.instagram.com/guillermo.fuentes.j',
+            text: '@guillermo.fuentes.j',
+            icon: 'fa-brands fa-square-instagram fa-fade'
+        }
+    };
+}
+
+window.onload = function() {
+    removeLoadingDiv();
+    setupPageElements();
+
 
     // When the user clicks on the button, scroll to the top of the document
     toTopBtn.addEventListener('click', function() {
@@ -96,11 +182,6 @@ window.onload = function() {
         linkedIn: 'https://www.linkedin.com/in/guillermo-fuentes-jaque',
         instagram: 'https://www.instagram.com/guillermo.fuentes.j'
     };
-
-    const navigation = document.getElementById('navigation');
-    navLinks.forEach((link, index) => {
-        navigation.innerHTML += `<li><a href="#${link.toLowerCase()}">${navLinksEsp[index]}</a></li>`;
-    });
 
     document.getElementById('introduction').innerHTML += `<h1>${introduction.name}</h1><h2>${introduction.profession}</h2><p>${introduction.description}</p>`;
 
@@ -220,61 +301,5 @@ window.onload = function() {
         <p>${publication.title} <a target="_blank" href="${publication.link}">Artículo</a></p>`;
     });
 
-    // Aquí comienza el nuevo código para el footer
-    const footer = document.getElementById('footer');
-
-    // Crear el contenedor para los datos de contacto
-    let contactContainer = document.createElement('div');
-    contactContainer.setAttribute('id', 'contact');
-
-    // Crear el elemento h2 y añadir texto
-    let h2 = document.createElement('h2');
-    h2.innerText = 'Contacto';
-    // Añadir el h2 al pie de página
-    footer.appendChild(h2);
-
-    // Crear el párrafo y el enlace para el email
-    let p = document.createElement('p');
-    let a = document.createElement('a');
-    a.setAttribute('href', `mailto:${contactDetails.email}`);
-    a.setAttribute('target', '_blank');
-    a.innerHTML = '<i class="fas fa-envelope fa-fade"></i> ' + contactDetails.email; // aquí añadimos el icono de email
-    p.appendChild(a);
-    // Añadir el párrafo al contenedor de contacto
-    contactContainer.appendChild(p);
-
-    // Crear el párrafo para el teléfono
-    let pPhone = document.createElement('p');
-    let aPhone = document.createElement('a');
-    aPhone.setAttribute('target', '_blank');
-    aPhone.setAttribute('href', `https://wa.me/${contactDetails.phone}`); // enlace a WhatsApp
-    aPhone.innerHTML = '<i class="fas fa-phone fa-fade"></i> ' + contactDetails.phone; // aquí añadimos el icono de teléfono
-    pPhone.appendChild(aPhone);
-    // Añadir el párrafo al contenedor de contacto
-    contactContainer.appendChild(pPhone);
-
-    // Crear el párrafo y el enlace para LinkedIn
-    let pLinkedIn = document.createElement('p');
-    let aLinkedIn = document.createElement('a');
-    aLinkedIn.setAttribute('target', '_blank');
-    aLinkedIn.setAttribute('href', contactDetails.linkedIn);
-    aLinkedIn.innerHTML = '<i class="fab fa-linkedin fa-fade"></i> Guillermo S. Fuentes-Jaque'; // aquí añadimos el icono de LinkedIn
-    pLinkedIn.appendChild(aLinkedIn);
-    // Añadir el párrafo al contenedor de contacto
-    contactContainer.appendChild(pLinkedIn);
-
-    // Crear el párrafo para el instagram
-    let pInsta = document.createElement('p');
-    let aInsta = document.createElement('a');
-    aInsta.setAttribute('target', '_blank');
-    aInsta.setAttribute('href', `${contactDetails.instagram}`); // enlace a WhatsApp
-    aInsta.innerHTML = '<i class="fa-brands fa-square-instagram fa-fade"></i> @guillermo.fuentes.j'; // aquí añadimos el icono de teléfono
-    pInsta.appendChild(aInsta);
-    // Añadir el párrafo al contenedor de contacto
-    contactContainer.appendChild(pInsta);
-
-    // Añadir el contenedor de contacto al pie de página
-    footer.appendChild(contactContainer);
-
-    contactContainer.insertAdjacentHTML('afterend', '<br><p>&copy; Guillermo S. Fuentes-Jaque, 2023. Todos los derechos reservados. <a href="docs/CV_GSFJ_rev_2022-06-30_ESP.pdf" download>Descargar en PDF</a></p>');
+    
 };
