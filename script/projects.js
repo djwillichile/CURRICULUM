@@ -1,7 +1,7 @@
 const projectsDetails = [
     {
         title: 'Mis proyectos en github',
-        description: 'Estos son algunos de los proyectos que he desarrollayo y dispuesto en github',
+        description: 'Estos son algunos de los proyectos que he desarrollado y dispuesto en github',
         link: 'https://github.com/djwillichile'
     },
     {

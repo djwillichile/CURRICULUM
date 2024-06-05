@@ -60,12 +60,20 @@ function removeLoadingDiv() {
 function setupPageElements() {
     setupNavigationLinks();
     setupBackToTopButton();
+    populateContent();
     setupFooter();
+    setupCoursesToggle();
 }
 
 function setupNavigationLinks() {
-    const navLinks = ['About', 'Experience', 'Education', 'Skills', 'Projects', 'Publications', 'Contact'];
-    const navLinksEsp = ['Sobre mí', 'Experiencia', 'Formación', 'Habilidades', 'Proyectos', 'Artículos', 'Contacto'];
+    const navLinks = [
+        'About', 'Experience', 'Education', 
+        'Skills', 'Projects', 'Publications', 'Contact'
+    ];
+    const navLinksEsp = [
+        'Sobre mí', 'Experiencia', 'Formación', 
+        'Habilidades', 'Proyectos', 'Artículos', 'Contacto'
+    ];
     const navigation = document.getElementById('navigation');
 
     navLinks.forEach((link, index) => {
@@ -86,14 +94,24 @@ function setupBackToTopButton() {
     document.body.appendChild(toTopBtn);
 
     window.onscroll = () => {
-        const shouldShowButton = document.body.scrollTop > 20 || document.documentElement.scrollTop > 20;
+        const shouldShowButton = document.body.scrollTop > 20 ||
+        document.documentElement.scrollTop > 20;
         toTopBtn.style.display = shouldShowButton ? "block" : "none";
     };
-
 
     toTopBtn.onclick = () => {
         window.scrollTo({top: 0, behavior: 'smooth'});
     };
+}
+
+function populateContent() {
+    populateIntroduction();
+    populateAbout();
+    populateSkills();
+    populateEducation();
+    populateProjects();
+    populatePublications();
+    populateExperience();
 }
 
 function setupFooter() {
@@ -105,8 +123,14 @@ function setupFooter() {
     footer.appendChild(contactInfo);
 
     function createContactLink(detail) {
+        const { link, icon, text } = detail;
         const p = document.createElement('p');
-        p.innerHTML = `<a href="${detail.link}" target="_blank"><i class="${detail.icon}"></i> ${detail.text}</a>`;
+        const anchorHtml = `
+            <a href="${link}" target="_blank">
+                <i class="${icon}"></i> ${text}
+            </a>
+        `;
+        p.innerHTML = anchorHtml;
         return p;
     }
 
@@ -117,13 +141,15 @@ function setupFooter() {
 
     function addCopyrightElement(footerElement) {
         const copyright = document.createElement('p');
-        const year = new Date().getFullYear(); // Opcionalmente puedes hacer que el año sea dinámico
+        const year = new Date().getFullYear(); // Opcional, año dinámico
         const linkText = 'Descargar en PDF';
         const filePath = 'docs/CV_GSFJ_rev_2022-06-30_ESP.pdf';
 
-        // Uso de Template Literal para mejorar la legibilidad
-        const htmlContent = `&copy; Guillermo S. Fuentes-Jaque, ${year}. Todos los derechos reservados.
-                            <a href="${filePath}" download>${linkText}</a>`;
+
+        const htmlContent = `
+            &copy; Guillermo S. Fuentes-Jaque, ${year}.Todos los derechos reservados.
+            <a href="${filePath}" download>${linkText}</a>
+        `;
         
         copyright.innerHTML = htmlContent;
         footerElement.appendChild(copyright);
@@ -158,148 +184,189 @@ function getContactDetails() {
     };
 }
 
+function populateIntroduction() {
+    const introductionSection = document.getElementById('introduction');
+    const paragraphs = aboutDetails.split('<br>').map(paragraph => `<p>${paragraph}</p>`).join('');
+    introductionSection.innerHTML += `
+        <h1>${introduction.name}</h1>
+        <h2>${introduction.profession}</h2>
+        <p>${introduction.description}</p>
+    `;
+}
+
+function populateAbout() {
+    const aboutSection = document.getElementById('about');
+    const paragraphs = aboutDetails.split('<br>').map(paragraph => `<p>${paragraph}</p>`).join('');
+    aboutSection.innerHTML = `<h2>Acerca de mí</h2>${paragraphs}`;
+}
+
+function populateSkills() {
+    const skillsSection = document.getElementById('skills');
+    skillsSection.innerHTML = `
+        <h2>Habilidades y herramientas</h2>
+        <p>${skillsIntroduction}</p>
+    `;
+
+    Object.entries(skills).forEach(([skill, rating]) => {
+        let ratingPercentage = (rating / 6) * 100;
+        const skillRow = document.createElement('div');
+        skillRow.className = 'skill-row';
+        skillRow.innerHTML = `
+            <div class="skill-track">
+                <div class="skill-bar" style="width: ${ratingPercentage}%"></div>
+            </div>
+            <span class="skill-name">${skill}</span>`;
+        skillsSection.appendChild(skillRow);
+    });
+}
+
+function populateEducation() {
+    const educationSection = document.getElementById('education');
+    educationSection.innerHTML = `
+        <h2>
+            Formación académica 
+            <a id="showCourses" href="#" style="margin-left: 10px; font-size: 0.8em;">
+                Mostrar cursos
+            </a>
+        </h2>
+        <div id="coursesContainer"></div>
+    `;
+
+    educationDetails.forEach(detail => {
+        educationSection.innerHTML += `
+            <h3>${detail.degree}</h3>
+            <p>${detail.institution}, ${detail.year}</p>
+        `;
+    });
+}
+
+function setupCoursesToggle() {
+    const showCoursesLink = document.getElementById('showCourses');
+    const coursesContainer = document.getElementById('coursesContainer');
+    showCoursesLink.addEventListener('click', function(e) {
+        e.preventDefault();
+        toggleCourses(showCoursesLink, coursesContainer);
+    });
+}
+
+function toggleCourses(link, container) {
+    if (link.textContent === "Mostrar cursos") {
+        link.textContent = "Contraer cursos";
+        courses.forEach(course => {
+            const h3 = document.createElement('h3');
+            h3.textContent = course.nombre;
+            
+            const p = document.createElement('p');
+            p.textContent = `${course.organizacion}, ${course.ubicacion}, ${course.año}`;
+
+            // Añadir elementos al contenedor
+            container.appendChild(h3);
+            container.appendChild(p);
+        });
+    } else {
+        link.textContent = "Mostrar cursos";
+        container.innerHTML = '';
+    }
+}
+
+function populateProjects() {
+    const projectsSection = document.getElementById('projects');
+    projectsSection.innerHTML += '<h2>Proyectos</h2>';
+    projectsDetails.forEach(project => {
+        const projectTitle = document.createElement('h3');
+        projectTitle.textContent = project.title;
+
+        const projectDescription = document.createElement('p');
+        projectDescription.textContent = project.description;
+
+        const projectLink = document.createElement('a');
+        projectLink.href = project.link;
+        projectLink.textContent = 'Ver proyecto';
+        projectLink.setAttribute('target', '_blank');
+
+        projectsSection.appendChild(projectTitle);
+        projectsSection.appendChild(projectDescription);
+        projectsSection.appendChild(projectLink);
+    });
+}
+
+function populatePublications() {
+    const publicationsSection = document.getElementById('publications');
+    publicationsSection.innerHTML += '<h2>Artículos publicados</h2>';
+    publicationsDetails.forEach(publication => {
+        const publicationTitle = document.createElement('h3');
+        publicationTitle.textContent = `${publication.author} (${publication.year})`;
+
+        const publicationDescription = document.createElement('p');
+        const articleLink = document.createElement('a');
+        articleLink.href = publication.link;
+        articleLink.textContent = 'Artículo';
+        articleLink.setAttribute('target', '_blank');
+
+        publicationDescription.textContent = `${publication.title} `;
+        publicationDescription.appendChild(articleLink);
+
+        publicationsSection.appendChild(publicationTitle);
+        publicationsSection.appendChild(publicationDescription);
+    });
+}
+
+function populateExperience() {
+    const experienceSection = document.getElementById('experience');
+    setupExperienceToggle(experienceSection);
+    populateExperienceDetails(experienceSection, experienceDetails);
+}
+
+function setupExperienceToggle(experienceSection) {
+    let isShowingFullExperience = false;
+    const header = document.createElement('h2');
+    header.innerHTML = 'Experiencia destacada (resumen) ';
+
+    const toggleExperienceLink = document.createElement('a');
+    toggleExperienceLink.id = 'toggleExperience';
+    toggleExperienceLink.href = '#';
+    toggleExperienceLink.style.marginLeft = '10px';
+    toggleExperienceLink.style.fontSize = '0.8em';
+    toggleExperienceLink.textContent = 'Mostrar más experiencia';
+    header.appendChild(toggleExperienceLink);
+    experienceSection.appendChild(header);
+
+    toggleExperienceLink.addEventListener('click', function(event) {
+        event.preventDefault();
+        toggleExperience(experienceSection, isShowingFullExperience);
+        isShowingFullExperience = !isShowingFullExperience;
+    });
+}
+
+function toggleExperience(experienceSection, isShowingFullExperience) {
+    clearExperienceSection(experienceSection);
+    const details = isShowingFullExperience ? fullExperienceDetails : experienceDetails;
+    const toggleText = isShowingFullExperience
+        ? 'Mostrar solo experiencia destacada'
+        : 'Mostrar más experiencia';
+    document.getElementById('toggleExperience').textContent = toggleText;
+    populateExperienceDetails(experienceSection, details);
+}
+
+function clearExperienceSection(experienceSection) {
+    // Remove all children except the header (which contains the toggle link)
+    while (experienceSection.children.length > 1) {
+        experienceSection.removeChild(experienceSection.lastChild);
+    }
+}
+
+function populateExperienceDetails(experienceSection, details) {
+    details.forEach(detail => {
+        const h3 = document.createElement('h3');
+        h3.textContent = `${detail.jobTitle} (${detail.year})`;
+        const p = document.createElement('p');
+        p.textContent = `${detail.description}, ${detail.company}`;
+        experienceSection.appendChild(h3);
+        experienceSection.appendChild(p);
+    });
+}
+
 window.onload = function() {
     removeLoadingDiv();
     setupPageElements();
-
-
-    // When the user clicks on the button, scroll to the top of the document
-    toTopBtn.addEventListener('click', function() {
-        document.body.scrollTop = 0; // For Safari
-        document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-    });
-
-    const paragraphs = aboutDetails.split('<br>').map(paragraph => `<p>${paragraph}</p>`).join('');
-
-    courses.forEach((curso) => {
-      console.log(`Cursos: ${curso.nombre}, ${curso.organizacion}, ${curso.ubicacion} ${curso.año}`);
-    });
-
-
-    const contactDetails = {
-        email: 'g.fuentes@renare.uchile.cl',
-        phone: '+56986876932',
-        linkedIn: 'https://www.linkedin.com/in/guillermo-fuentes-jaque',
-        instagram: 'https://www.instagram.com/guillermo.fuentes.j'
-    };
-
-    document.getElementById('introduction').innerHTML += `<h1>${introduction.name}</h1><h2>${introduction.profession}</h2><p>${introduction.description}</p>`;
-
-    document.getElementById('about').innerHTML += `<h2>Acerca de mí</h2>${paragraphs}`;
-
-    const skillsSection = document.getElementById('skills');
-    skillsSection.innerHTML += '<h2>Habilidades y herramientas</h2>';
-    skillsSection.innerHTML += `<p>${skillsIntroduction}</p>`;
-    for (const [skill, rating] of Object.entries(skills)) {
-        let ratingPercentage = (rating / 6) * 100;
-
-        skillsSection.appendChild(Object.assign(document.createElement('div'), {
-            className: 'skill-row',
-            innerHTML: `<div class="skill-track"><div class="skill-bar" style="width: ${ratingPercentage}%">
-            </div></div><span class="skill-name">${skill}</span>`
-        }));
-    }
-
-
-    const educationSection = document.getElementById('education');
-    educationSection.innerHTML += '<h2>Formación académica <a id="showCourses" href="#" style="margin-left: 10px; font-size: 0.8em;">Mostrar cursos</a></h2>';
-    educationDetails.forEach((detail) => {
-        educationSection.innerHTML += `<h3>${detail.degree}</h3><p>${detail.institution}, ${detail.year}</p>`;
-    });
-
-   // Añade un contenedor para los cursos
-    educationSection.innerHTML += '<div id="coursesContainer"></div>';
-
-    let coursesContainer = document.getElementById('coursesContainer');
-
-    // Seleccionar el enlace y añadir el evento de clic
-    let showCoursesLink = document.getElementById('showCourses');
-    showCoursesLink.addEventListener('click', function(e) {
-        // Evita que el enlace navegue a su href
-        e.preventDefault();
-
-        // Comprueba si los cursos ya están mostrándose
-        if (showCoursesLink.textContent === "Mostrar cursos") {
-            // Cambia el texto del enlace
-            showCoursesLink.textContent = "Contraer cursos";
-
-            // Añade los cursos
-            coursesContainer.innerHTML = '<br><hr style="border: none; border-top: 3px solid rgba(128, 128, 128, 0.5);">'
-                                       + '<br><h2>Formación Complementaria</h2>';
-            courses.forEach((course) => {
-                coursesContainer.innerHTML += `<h3>${course.nombre}</h3><p>${course.organizacion}, ${course.ubicacion}, ${course.año}</p>`;
-            });
-        } else {
-            // Cambia el texto del enlace
-            showCoursesLink.textContent = "Mostrar cursos";
-
-            // Vacía el contenedor de los cursos
-            coursesContainer.innerHTML = '';
-        }
-    });
-
-    const experienceSection = document.getElementById('experience');
-    // Añade el encabezado y el enlace
-    experienceSection.innerHTML = '<h2>Experiencia destacada (resumen) <a id="toggleExperience" href="#" style="margin-left: 10px; font-size: 0.8em;">Mostrar más experiencia</a></h2>';
-    let isShowingFullExperience = false;
-
-    const toggleExperience = () => {
-        // Vaciar la sección de experiencia
-        while (experienceSection.firstChild) {
-            experienceSection.removeChild(experienceSection.firstChild);
-        }
-
-        // Cambia el estado y muestra la experiencia adecuada
-        if (isShowingFullExperience) {
-            experienceSection.innerHTML = '<h2>Experiencia destacada (resumen) <a id="toggleExperience" href="#" style="margin-left: 10px; font-size: 0.8em;">Mostrar más experiencia</a></h2>';
-            addExperienceDetails(experienceDetails);
-            isShowingFullExperience = false;
-        } else {
-            experienceSection.innerHTML = '<h2>Experiencia<a id="toggleExperience" href="#" style="margin-left: 10px; font-size: 0.8em;">Mostrar solo experiencia destacada</a></h2>';
-            addExperienceDetails(fullExperienceDetails);
-            isShowingFullExperience = true;
-        }
-
-        // Vuelve a adjuntar el controlador de eventos al enlace
-        document.getElementById("toggleExperience").addEventListener('click', function (event) {
-            event.preventDefault();
-            toggleExperience();
-        });
-    }
-
-    const addExperienceDetails = (details) => {
-        details.forEach((detail) => {
-            let h3 = document.createElement("h3");
-            h3.textContent = detail.jobTitle + ' (' + detail.year + ')';
-            experienceSection.appendChild(h3);
-
-            let p = document.createElement("p");
-            p.textContent = `${detail.description}, ${detail.company}`;
-            experienceSection.appendChild(p);
-        });
-    }
-
-    // Añade detalles de experiencia destacada al principio
-    addExperienceDetails(experienceDetails);
-
-    // Adjunta el controlador de eventos al enlace
-    document.getElementById("toggleExperience").addEventListener('click', function (event) {
-        event.preventDefault();
-        toggleExperience();
-    });
-
-    const projectsSection = document.getElementById('projects');
-    projectsSection.innerHTML += '<h2>Proyectos</h2>';
-    projectsDetails.forEach((project) => {
-        projectsSection.innerHTML += `<h3>${project.title}</h3><p>${project.description}</p><p><a href="${project.link}">Ver proyecto</a></p>`;
-    });
-
-    const publicationsSection = document.getElementById("publications");
-    publicationsSection.innerHTML += '<h2>Artículos publicados</h2>';
-    publicationsDetails.forEach(publication => {
-        publicationsSection.innerHTML += `<h3>${publication.author} (${publication.year})</h3>
-        <p>${publication.title} <a target="_blank" href="${publication.link}">Artículo</a></p>`;
-    });
-
-    
 };
