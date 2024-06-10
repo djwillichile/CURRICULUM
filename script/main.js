@@ -222,6 +222,7 @@ function populateSkills() {
 
 function populateEducation() {
     const educationSection = document.getElementById('education');
+    const sortedEducationDetails = educationDetails.sort((a, b) => b.year - a.year);
     educationSection.innerHTML = `
         <h2>
             Formación académica 
@@ -232,7 +233,7 @@ function populateEducation() {
         <div id="coursesContainer"></div>
     `;
 
-    educationDetails.forEach(detail => {
+    sortedEducationDetails.forEach(detail => {
         educationSection.innerHTML += `
             <h3>${detail.degree}</h3>
             <p>${detail.institution}, ${detail.year}</p>
@@ -243,23 +244,29 @@ function populateEducation() {
 function setupCoursesToggle() {
     const showCoursesLink = document.getElementById('showCourses');
     const coursesContainer = document.getElementById('coursesContainer');
+    let isShowingCourses = false;
+
     showCoursesLink.addEventListener('click', function(e) {
         e.preventDefault();
-        toggleCourses(showCoursesLink, coursesContainer);
+        isShowingCourses = !isShowingCourses;
+        toggleCourses(showCoursesLink, coursesContainer, isShowingCourses);
     });
 }
 
-function toggleCourses(link, container) {
-    if (link.textContent === "Mostrar cursos") {
+function toggleCourses(link, container, isShowingCourses) {
+    container.innerHTML = ''
+    if (isShowingCourses) {
         link.textContent = "Contraer cursos";
-        courses.forEach(course => {
+
+        const sortedCourses = courses.sort((a, b) => b.año - a.año);
+
+        sortedCourses.forEach(course => {
             const h3 = document.createElement('h3');
             h3.textContent = course.nombre;
             
             const p = document.createElement('p');
             p.textContent = `${course.organizacion}, ${course.ubicacion}, ${course.año}`;
 
-            // Añadir elementos al contenedor
             container.appendChild(h3);
             container.appendChild(p);
         });
@@ -311,16 +318,40 @@ function populatePublications() {
     });
 }
 
+function sortExperienceDetails(details) {
+    return details.sort((a, b) => {
+        const yearsA = a.year.split(' - ').map(year => parseInt(year));
+        const yearsB = b.year.split(' - ').map(year => parseInt(year));
+
+        const startYearA = yearsA[0]; // Primer año o único año
+        const endYearA = yearsA[1] || yearsA[0]; // Último año o único año
+
+        const startYearB = yearsB[0]; // Primer año o único año
+        const endYearB = yearsB[1] || yearsB[0]; // Último año o único año
+
+        if (endYearA !== endYearB) {
+            return endYearB - endYearA;
+        } else {
+            return startYearB - startYearA;
+        }
+    });
+}
+
 function populateExperience() {
     const experienceSection = document.getElementById('experience');
     setupExperienceToggle(experienceSection);
-    populateExperienceDetails(experienceSection, experienceDetails);
+
+    const sortedExperienceDetails = sortExperienceDetails(experienceDetails);
+    const sortedFullExperienceDetails = sortExperienceDetails(fullExperienceDetails);
+
+    populateExperienceDetails(experienceSection, sortedExperienceDetails);
 }
 
 function setupExperienceToggle(experienceSection) {
     let isShowingFullExperience = false;
     const header = document.createElement('h2');
-    header.innerHTML = 'Experiencia destacada (resumen) ';
+    header.id = 'experienceHeader';
+    header.innerHTML = 'Experiencia destacada';
 
     const toggleExperienceLink = document.createElement('a');
     toggleExperienceLink.id = 'toggleExperience';
@@ -333,19 +364,27 @@ function setupExperienceToggle(experienceSection) {
 
     toggleExperienceLink.addEventListener('click', function(event) {
         event.preventDefault();
-        toggleExperience(experienceSection, isShowingFullExperience);
         isShowingFullExperience = !isShowingFullExperience;
+        updateHeaderText(header, isShowingFullExperience);
+        toggleExperience(experienceSection, isShowingFullExperience);
     });
 }
 
 function toggleExperience(experienceSection, isShowingFullExperience) {
     clearExperienceSection(experienceSection);
     const details = isShowingFullExperience ? fullExperienceDetails : experienceDetails;
-    const toggleText = isShowingFullExperience
-        ? 'Mostrar solo experiencia destacada'
-        : 'Mostrar más experiencia';
-    document.getElementById('toggleExperience').textContent = toggleText;
     populateExperienceDetails(experienceSection, details);
+}
+
+function updateHeaderText(header, isShowingFullExperience) {
+    const toggleText = isShowingFullExperience 
+        ? 'Mostrar solo experiencia destacada' 
+        : 'Mostrar más experiencia';
+    const headerText = isShowingFullExperience 
+        ? 'Experiencia completa' 
+        : 'Experiencia destacada';
+    document.getElementById('toggleExperience').textContent = toggleText;
+    header.firstChild.textContent=headerText;
 }
 
 function clearExperienceSection(experienceSection) {
