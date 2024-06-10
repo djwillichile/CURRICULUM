@@ -3,13 +3,7 @@ const experienceDetails = [
         jobTitle: 'Investigador',
         company: 'Universidad de Talca',
         year: '2022 - 2023',
-        description: 'Proyecto ANID FSEQ210004 para mejorar la gestión de los recursos hídricos en la agricultura bajo condiciones de sequía y cambio climático'
-    },
-    {
-        jobTitle: 'Profesor colaborador',
-        company: 'Universidad Mayor',
-        year: '2020',
-        description: 'Cursos Procesamiento y Aplicaciones de Datos Termales, Magíster en Teledetección, Facultad de Ciencias'
+        description: 'Proyecto ANID FSEQ210004 Desarrollo de una plataforma inteligente basada en información meteorológicas y satelital para mejorar la gestión de los recursos hídricos en la agricultura bajo condiciones de sequía y cambio climático'
     },
     {
         jobTitle: 'Investigador',
@@ -40,6 +34,18 @@ const experienceDetails = [
         company: 'Instituto de Investigaciones Agropecuarias INIA',
         year: '2016 - 2017',
         description: 'Proyecto FIC Regional 30170072-0 Plataforma de zonificación agrometeorológica para aptitud de cultivos y gestión de riego en Arica y Parinacota'
+    },
+    {
+        jobTitle: 'Profesor colaborador',
+        company: 'Universidad Mayor',
+        year: '2020',
+        description: 'Cursos Procesamiento y Aplicaciones de Datos Termales, Magíster en Teledetección, Facultad de Ciencias'
+    },
+    {
+        jobTitle: 'Analista Geoespacial',
+        company: 'Instituto Nacional de estadística',
+        year: '2023 - 2024',
+        description: 'Aplicación de análisis geoespacial y optimización de la recopilación y procesamiento de datos demográﬁcos. Actuaclización cartográﬁca Proyecto de Enumeración Integrada para el Censo 2024'
     }
 ];
 
@@ -60,8 +66,8 @@ const fullExperienceDetails = [
     {
         jobTitle: 'Profesor de cátedra',
         company: 'Universidad Mayor',
-        year: '2022',
-        description: 'Curso Ingeniería en Eficiencia Energética, Facultad de Ciencias, Ingeniería y Tecnología'
+        year: '2022 - 2023',
+        description: 'Cursos Ingeniería en Eficiencia Energética (2022-2023) y Tecnologías de Enrgías Renovables (2023), Facultad de Ciencias, Ingeniería y Tecnología'
     },
     {
         jobTitle: 'Asesor y colaborador',
@@ -85,7 +91,7 @@ const fullExperienceDetails = [
         jobTitle: 'Profesor instructor',
         company: 'Universidad de Chile',
         year: '2019 - 2023',
-        description: 'Cursos Fundamentos de sistemas de Información Geográfica (2019-2023), Fundamentos de Teledetección (2020-2022), Teoría de Sistemas y Modelamiento Ambiental (2019-2021), Física II (2019-2022) y Física Ambiental (2019-2022), Física Aplicada (2022), Percepción Remota (2022-2023), Facultad de Ciencias Agronómicas'
+        description: 'Cursos Fundamentos de sistemas de Información Geográfica (2019-2023), Fundamentos de Teledetección (2020-2022), Teoría de Sistemas y Modelamiento Ambiental (2019-2021), Física II (2019-2022), Física Ambiental (2019-2022), Física Aplicada (2022) y Percepción Remota (2022-2023), Facultad de Ciencias Agronómicas'
     },
     {
         jobTitle: 'Investigador',
@@ -206,5 +212,17 @@ const fullExperienceDetails = [
         company: 'Universidad de Chile',
         year: '2013',
         description: 'Proyecto de análisis y modelación pluviométrica para el secano interior de la Región del Maule y Proyecto de zonificación bioclimática para la Región del Maule, Laboratory for Research in Environmental Sciences (LARES), Facultad de Ciencias Agronómicas'
+    },
+    {
+        jobTitle: 'Analista Geoespacial',
+        company: 'Instituto Nacional de estadística',
+        year: '2023 - 2024',
+        description: 'Aplicación de análisis geoespacial y optimización de la recopilación y procesamiento de datos demográﬁcos. Actuaclización cartográﬁca Proyecto de Enumeración Integrada para el Censo 2024'
+    },
+    {
+        jobTitle: 'Profesor de cátedra',
+        company: 'Universidad de Chile',
+        year: '2023',
+        description: 'Cursos Física, Física Aplicada, Física Ambiental y Taller de aplicaciones de Percepción Remota, Facultad de Ciencias Agronómicas'
     }
 ];
