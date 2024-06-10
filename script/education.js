@@ -7,12 +7,17 @@ const educationDetails = [
     {
         degree: 'Ingeniería en Recursos Naturales Renovables',
         institution: 'Facultad de Ciencias Agronómicas, Universidad de Chile',
-        year: '2021',
+        year: '2022',
     },
     {
         degree: 'Licenciatura en ciencias de los Recursos Naturales Renovables',
         institution: 'Facultad de Ciencias Agronómicas, Universidad de Chile',
         year: '2018',
+    },
+    {
+        degree: 'Ingeniería Civil Informática',
+        institution: 'Facultad de Ingeniería, Arquitectura y Diseño, Universidad San Sebastián',
+        year: '(Cursando)',
     },
 ];
 
