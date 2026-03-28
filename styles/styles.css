@@ -86,6 +86,65 @@ main p {
     text-align: justify;
 }
 
+.intro-thesis-link {
+    margin-top: 16px;
+}
+
+.intro-thesis-link a {
+    display: inline-block;
+    color: #d7f5de;
+    background-color: rgba(40, 167, 69, 0.18);
+    border: 1px solid rgba(215, 245, 222, 0.35);
+    padding: 10px 14px;
+    text-decoration: none;
+}
+
+.intro-thesis-link a:hover {
+    background-color: rgba(40, 167, 69, 0.28);
+}
+
+.section-label {
+    font-size: 0.9rem;
+    font-weight: bold;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #2f6a39;
+}
+
+.featured-thesis {
+    margin-bottom: 28px;
+    padding: 18px 20px;
+    border-left: 4px solid #2f6a39;
+    background: linear-gradient(rgba(239, 247, 241, 0.96), rgba(255, 255, 255, 0.98));
+}
+
+.featured-thesis-links {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 14px 0;
+}
+
+.featured-thesis-links a {
+    color: #1e5e2d;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.featured-thesis-links a:hover,
+.featured-thesis-links a:focus,
+nav ul li a:hover,
+nav ul li a:focus,
+footer p a:hover,
+footer p a:focus {
+    text-decoration: underline;
+}
+
+.citation {
+    font-size: 0.95rem;
+    color: #444;
+}
+
 section {
     margin: 20px;
     padding: 20px;
@@ -218,6 +277,10 @@ footer p a {
     #contact {
         flex-direction: column;
         align-items: center;
+    }
+
+    .featured-thesis {
+        padding: 16px;
     }
 
     #navigation {

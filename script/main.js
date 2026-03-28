@@ -1,5 +1,9 @@
 document.addEventListener('DOMContentLoaded', initPage);
 
+const thesisLandingUrl = 'https://djwillichile.github.io/tesis-atacama-chirps/';
+const thesisRepositoryUrl = 'https://repositorio.uchile.cl/handle/2250/200362';
+const thesisPdfUrl = 'https://repositorio.uchile.cl/bitstream/handle/2250/200362/2022_Guillermo_Fuentes_Jaque.pdf';
+
 function initPage() {
   createLoadingSpinner();
   loadScriptsSequentially([
@@ -191,6 +195,9 @@ function populateIntroduction() {
         <h1>${introduction.name}</h1>
         <h2>${introduction.profession}</h2>
         <p>${introduction.description}</p>
+        <p class="intro-thesis-link">
+            <a href="${thesisLandingUrl}" target="_blank" rel="noopener noreferrer">Explorar la tesis sobre precipitación en el desierto de Atacama a partir de productos CHIRPS</a>
+        </p>
     `;
 }
 
@@ -299,7 +306,21 @@ function populateProjects() {
 
 function populatePublications() {
     const publicationsSection = document.getElementById('publications');
-    publicationsSection.innerHTML += '<h2>Artículos publicados</h2>';
+    publicationsSection.innerHTML += '<h2>Artículos y tesis</h2>';
+    publicationsSection.innerHTML += `
+        <div class="featured-thesis" itemscope itemtype="https://schema.org/Thesis">
+            <p class="section-label">Tesis destacada</p>
+            <h3 itemprop="name">Desarrollo de un método para estimar la distribución espacial de la precipitación mensual en alta resolución en el desierto de Atacama (Chile) a partir de productos CHIRPS</h3>
+            <p itemprop="description">Esta tesis de magíster aborda la estimación espacial de la precipitación mensual en alta resolución en el desierto de Atacama, integrando productos CHIRPS, información meteorológica y técnicas de reducción de escala para mejorar la representación local de un fenómeno clave en el contexto del cambio climático.</p>
+            <div class="featured-thesis-links">
+                <a href="${thesisLandingUrl}" target="_blank" rel="noopener noreferrer">Explorar la landing de la tesis sobre precipitación en Atacama y CHIRPS</a>
+                <a href="${thesisRepositoryUrl}" target="_blank" rel="noopener noreferrer">Consultar la tesis en el Repositorio Académico de la Universidad de Chile</a>
+                <a href="${thesisPdfUrl}" target="_blank" rel="noopener noreferrer">Descargar el PDF institucional de la tesis</a>
+            </div>
+            <p class="citation"><strong>Cómo citar:</strong> Fuentes-Jaque, G. S. (2022). <em>Desarrollo de un método para estimar la distribución espacial de la precipitación mensual en alta resolución en el desierto de Atacama (Chile) a partir de productos CHIRPS</em> [Tesis de magíster, Universidad de Chile]. Repositorio Académico de la Universidad de Chile.</p>
+        </div>
+    `;
+
     publicationsDetails.forEach(publication => {
         const publicationTitle = document.createElement('h3');
         publicationTitle.textContent = `${publication.author} (${publication.year})`;
@@ -309,6 +330,7 @@ function populatePublications() {
         articleLink.href = publication.link;
         articleLink.textContent = 'Artículo';
         articleLink.setAttribute('target', '_blank');
+        articleLink.setAttribute('rel', 'noopener noreferrer');
 
         publicationDescription.textContent = `${publication.title} `;
         publicationDescription.appendChild(articleLink);
