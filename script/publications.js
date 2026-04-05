@@ -1,4 +1,19 @@
-const publicationsDetails = [
+const publications = [
+    {
+        type: 'thesis',
+        author: 'Fuentes-Jaque, G. S.',
+        title: 'Desarrollo de un método para estimar la distribución espacial de la precipitación mensual en alta resolución en el desierto de Atacama (Chile) a partir de productos CHIRPS',
+        year: '2022',
+        degree: 'Magíster en Gestión Territorial de Recursos Naturales',
+        institution: 'Universidad de Chile',
+        summary: 'Investigación que propone un método para estimar precipitación mensual en alta resolución en el Desierto de Atacama, integrando productos CHIRPS, información meteorológica y técnicas de downscaling. El método alcanzó grillas de 250 metros de resolución con error promedio de 9.7%, superando productos como CHIRPS, ANUSPLIN y CR2MET.',
+        links: {
+            landing: 'https://djwillichile.github.io/tesis-atacama-chirps/',
+            repository: 'https://repositorio.uchile.cl/handle/2250/200362',
+            pdf: 'https://repositorio.uchile.cl/bitstream/handle/2250/200362/2022_Guillermo_Fuentes_Jaque.pdf'
+        },
+        tags: ['Modelamiento espacial', 'Precipitación', 'CHIRPS', 'Desierto de Atacama', 'Downscaling', 'Teledetección'],
+    },
     {
         author: 'Morales-Salinas L., Castellaro, G., Frederiksen, N., Roman-Ososrio, L.F., Neira-Roman, J., Fuentes-Jaque, G., Escobar-Avaria, C. & Morales, F.',
         title: 'Spatial characterization of climatic variables for Arica-Parinacota and Tarapacá, Chile using topoclimatic analysis',
