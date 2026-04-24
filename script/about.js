@@ -1,6 +1,6 @@
 const introduction = {
     name: 'Guillermo S. Fuentes Jaque',
-    profession: 'Estadística · Ciencia de Datos · Sistemas de Información',
+    profession: 'Geomática · Teledetección · Ciencia de Datos · Programación',
     description: 'Profesional con más de 10 años de experiencia en análisis estadístico aplicado, ciencia de datos y gestión de información territorial para apoyo a la toma de decisiones.'
 };
 
