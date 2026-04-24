@@ -1,5 +1,21 @@
 const publicationsDetails = [
     {
+        author: 'Fuentes-Jaque, G. S. et al.',
+        title: 'Climate change can disproportionately reduce habitats of stream fishes with restricted ranges in southern South America',
+        link: 'https://doi.org/10.1038/s41598-024-66374-6',
+        year: '2024',
+        summary: '',
+        tags: [],
+    },
+    {
+        author: 'Fuentes-Jaque, G. S. et al.',
+        title: 'Spatio-Temporal Behavior of Land Surface Temperatures in Central Chile, Using Terra MODIS Images',
+        link: 'https://doi.org/10.3390/hydrology11070103',
+        year: '2024',
+        summary: '',
+        tags: [],
+    },
+    {
         author: 'Morales-Salinas L., Castellaro, G., Frederiksen, N., Roman-Ososrio, L.F., Neira-Roman, J., Fuentes-Jaque, G., Escobar-Avaria, C. & Morales, F.',
         title: 'Spatial characterization of climatic variables for Arica-Parinacota and Tarapacá, Chile using topoclimatic analysis',
         link: 'https://publicaciones.unirioja.es/ojs/index.php/cig/article/view/5473',
@@ -18,8 +34,8 @@ const publicationsDetails = [
     {
         author: 'Morales-Salinas, L., Ortega-Farias, S., Riveros-Burgos, C., Chávez, J. L., Wang, S., Tian, F., Carrasco-Benavides, M., Neira-Román, J., López-Olivari, R. & Fuentes-Jaque, G.',
         title: 'Assessment of atmospheric emissivity models for clear-sky conditions with reanalysis data',
-        link: 'https://www.researchsquare.com/article/rs-2294837/v1',
-        year: '2022',
+        link: 'https://doi.org/10.1038/s41598-023-40499-6',
+        year: '2023',
         summary: '',
         tags: [],
     },

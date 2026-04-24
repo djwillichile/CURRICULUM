@@ -1,8 +1,13 @@
 const educationDetails = [
     {
+        degree: 'Ingeniería Civil Informática',
+        institution: 'Facultad de Ingeniería, Arquitectura y Diseño, Universidad San Sebastián',
+        year: '2026',
+    },
+    {
         degree: 'Magíster en Gestión Territorial de Recursos Naturales',
         institution: 'Facultad de Ciencias Agronómicas, Universidad de Chile',
-        year: '2022',
+        year: '2023',
     },
     {
         degree: 'Ingeniería en Recursos Naturales Renovables',
@@ -10,20 +15,51 @@ const educationDetails = [
         year: '2022',
     },
     {
-        degree: 'Licenciatura en ciencias de los Recursos Naturales Renovables',
+        degree: 'Licenciatura en Ciencias de los Recursos Naturales Renovables',
         institution: 'Facultad de Ciencias Agronómicas, Universidad de Chile',
         year: '2018',
-    },
-    {
-        degree: 'Ingeniería Civil Informática',
-        institution: 'Facultad de Ingeniería, Arquitectura y Diseño, Universidad San Sebastián',
-        year: '(Cursando)',
     },
 ];
 
 let courses = [
     {
-        nombre: "Sistemas de Información Geografica Aplicada a los Recursos Naturales Renovables",
+        nombre: "Business Intelligence Analyst Professional Certification (BIAPC™)",
+        organizacion: "CertiProf",
+        ubicacion: "online",
+        año: 2025
+    },
+    {
+        nombre: "Programa especializado en Ciencia de Datos: análisis exploratorio, preparación de datos y modelos predictivos",
+        organizacion: "Universidad de los Andes",
+        ubicacion: "online",
+        año: 2025
+    },
+    {
+        nombre: "Fundamentos del Análisis de Datos",
+        organizacion: "Macquarie University",
+        ubicacion: "online",
+        año: 2025
+    },
+    {
+        nombre: "Monitoreo Global de Superficie de Agua Terrestre con Teledetección (SWOT)",
+        organizacion: "NASA ARSET",
+        ubicacion: "online",
+        año: 2025
+    },
+    {
+        nombre: "Academia de Agua y Resiliencia Hídrica en Chile",
+        organizacion: "Fundación Uno Punto Cinco",
+        ubicacion: "online",
+        año: 2025
+    },
+    {
+        nombre: "Análisis de Datos con R",
+        organizacion: "Universidad Bernardo O'Higgins",
+        ubicacion: "online",
+        año: 2024
+    },
+    {
+        nombre: "Sistemas de Información Geográfica Aplicada a los Recursos Naturales Renovables",
         organizacion: "Escuela de postgrado, Facultad de Ciencias Agronómicas, Universidad de Chile",
         ubicacion: "La Pintana, Santiago",
         año: 2021
@@ -55,7 +91,7 @@ let courses = [
     {
         nombre: "Biosphere - atmosphere interactions",
         organizacion: "Postgraduate Summer School, Faculty of Agricultural Sciences, University of Chile",
-        ubicacion: "Frutillar town, Southern Chile",
+        ubicacion: "Frutillar, Sur de Chile",
         año: 2019
     },
     {
@@ -73,19 +109,19 @@ let courses = [
     {
         nombre: "Micrometeorología y Contaminación Atmosférica",
         organizacion: "Facultad de Ciencias, Universidad Nacional Autónoma de México",
-        ubicacion: "Distrito Federal, México",
+        ubicacion: "Ciudad de México, México",
         año: 2015
     },
     {
         nombre: "Aerosoles Atmosféricos",
         organizacion: "Facultad de Ciencias, Universidad Nacional Autónoma de México",
-        ubicacion: "Distrito Federal, México",
+        ubicacion: "Ciudad de México, México",
         año: 2015
     },
     {
         nombre: "Taller de Modelación Numérica",
         organizacion: "Facultad de Ciencias, Universidad Nacional Autónoma de México",
-        ubicacion: "Distrito Federal, México",
+        ubicacion: "Ciudad de México, México",
         año: 2015
     },
     {
@@ -101,7 +137,7 @@ let courses = [
         año: 2013
     },
     {
-        nombre: "Taller Consumo Energético Y Calentamiento Global: Metodología de Diagnóstico a Escala Urbana",
+        nombre: "Taller Consumo Energético y Calentamiento Global: Metodología de Diagnóstico a Escala Urbana",
         organizacion: "Facultad de Ciencias Agronómicas, Universidad de Chile",
         ubicacion: "La Pintana, Santiago",
         año: 2013

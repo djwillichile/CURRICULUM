@@ -147,7 +147,7 @@ function setupFooter() {
         const copyright = document.createElement('p');
         const year = new Date().getFullYear(); // Opcional, año dinámico
         const linkText = 'Descargar en PDF';
-        const filePath = 'docs/CV_GSFJ_rev_2022-06-30_ESP.pdf';
+        const filePath = 'docs/CV_GSFJ_rev_2026-01-08_ESP.pdf';
 
 
         const htmlContent = `

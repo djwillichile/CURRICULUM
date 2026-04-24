@@ -20,11 +20,7 @@ body {
 }
 
 header {
-    background-image: url('https://www.bitdegree.org/learn/storage/media/images/57bb1705-3ac9-41e3-9e97-37d4ee5771ac.o.jpg');
-    background-color: #333;
-    background-attachment: fixed;  /* Esto crea el efecto parallax */
-    background-repeat: no-repeat;  /* Evita que la imagen se repita */
-    background-size: cover;  /* Asegura que la imagen cubra toda la página */
+    background: linear-gradient(135deg, #1b2e1b 0%, #243d24 60%, #1a2a1a 100%);
     color: #fff;
     padding: 20px 40px;
     text-align: center;
@@ -161,11 +157,7 @@ section {
 }
 
 footer {
-    background-image: url('https://vietabinhdinh.edu.vn/wp-content/uploads/1677322890_869_Black-background-Background-black-tuyet-dep.jpg');
-    background-color: #333;
-    background-attachment: fixed;  /* Esto crea el efecto parallax */
-    background-repeat: no-repeat;  /* Evita que la imagen se repita */
-    background-size: cover;  /* Asegura que la imagen cubra toda la página */
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
     color: #fff;
     text-align: center;
     padding: 20px 0;
