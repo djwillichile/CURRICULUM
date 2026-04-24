@@ -29,7 +29,7 @@ const skillCategories = [
     {
         icon: 'fas fa-code-branch',
         name: 'Automatización y reproducibilidad',
-        tools: ['Git / GitHub', 'flujos reproducibles R / Python', 'documentación técnica']
+        tools: ['Git / GitHub', 'flujos reproducibles R / Python', 'n8n', 'Notion', 'Claude', 'Codex', 'antigravity']
     },
     {
         icon: 'fas fa-chalkboard-teacher',
