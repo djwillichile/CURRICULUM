@@ -1,6 +1,6 @@
 const publicationsDetails = [
     {
-        author: 'Fuentes-Jaque, G. S. et al.',
+        author: 'Bizama, G., Jan, A., Olivos, J.A., Fuentes-Jaque, G., Valdovinos, C., Urrutia, R. & Arismendi, I.',
         title: 'Climate change can disproportionately reduce habitats of stream fishes with restricted ranges in southern South America',
         link: 'https://doi.org/10.1038/s41598-024-66374-6',
         year: '2024',
@@ -8,7 +8,7 @@ const publicationsDetails = [
         tags: [],
     },
     {
-        author: 'Fuentes-Jaque, G. S. et al.',
+        author: 'Muñoz-Aguayo, P., Morales-Salinas, L., Pizarro, R., Ibáñez, A., Sangüesa, C., Fuentes-Jaque, G., Toledo, C. & Garcia-Chevesich, P.A.',
         title: 'Spatio-Temporal Behavior of Land Surface Temperatures in Central Chile, Using Terra MODIS Images',
         link: 'https://doi.org/10.3390/hydrology11070103',
         year: '2024',
