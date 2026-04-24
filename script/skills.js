@@ -29,7 +29,7 @@ const skillCategories = [
     {
         icon: 'fas fa-code-branch',
         name: 'Automatización de flujos',
-        tools: ['Git / GitHub', 'flujos reproducibles R / Python', 'n8n', 'Notion']
+        tools: ['flujos reproducibles R / Python', 'Git / GitHub', 'n8n', 'Notion']
     },
     {
         icon: 'fas fa-robot',
