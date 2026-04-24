@@ -1,0 +1,433 @@
+document.addEventListener('DOMContentLoaded', initPage);
+
+const thesisLandingUrl = 'https://djwillichile.github.io/tesis-atacama-chirps/';
+const thesisRepositoryUrl = 'https://repositorio.uchile.cl/handle/2250/200362';
+const thesisPdfUrl = 'https://repositorio.uchile.cl/bitstream/handle/2250/200362/2022_Guillermo_Fuentes_Jaque.pdf';
+
+function initPage() {
+  createLoadingSpinner();
+  loadScriptsSequentially([
+    'about.js', 'education.js', 'skills.js', 'experience.js', 'projects.js', 'publications.js'
+  ], 'script/main.js');
+}
+
+function createLoadingSpinner() {
+  const spinner = createElement('div', {class: 'spinner'});
+  const loadingDiv = createElement('div', {id: 'loading'}, spinner);
+  document.body.appendChild(loadingDiv);
+}
+
+function createElement(tag, attributes, ...children) {
+  const element = document.createElement(tag);
+  for (const key in attributes) {
+    element.setAttribute(key, attributes[key]);
+  }
+  children.forEach(child => {
+    if (typeof child === 'string') {
+      element.appendChild(document.createTextNode(child));
+    } else {
+      element.appendChild(child);
+    }
+  });
+  return element;
+}
+
+function loadScriptsSequentially(scripts, referenceSrc) {
+  const referenceScript = document.querySelector(`script[src="${referenceSrc}"]`);
+  scripts.reduce((prevPromise, src) => {
+    return prevPromise.then(() => {
+      return loadScript(`script/${src}`, referenceScript);
+    });
+  }, Promise.resolve());
+}
+
+function loadScript(src, referenceNode) {
+  return new Promise((resolve, reject) => {
+    const script = document.createElement('script');
+    script.src = src;
+    script.onload = resolve;
+    script.onerror = () => reject(new Error(`Script load error for ${src}`));
+    referenceNode.parentNode.insertBefore(script, referenceNode.nextSibling);
+    referenceNode = script;
+  });
+}
+
+function removeLoadingDiv() {
+    setTimeout(() => {
+        const loadingDiv = document.getElementById('loading');
+        if (loadingDiv) {
+            document.body.removeChild(loadingDiv);
+        }
+    }, 400);
+}
+
+function setupPageElements() {
+    setupNavigationLinks();
+    setupBackToTopButton();
+    populateContent();
+    setupFooter();
+    setupCoursesToggle();
+}
+
+function setupNavigationLinks() {
+    const navLinks = [
+        'About', 'Experience', 'Education', 
+        'Skills', 'Projects', 'Publications', 'Contact'
+    ];
+    const navLinksEsp = [
+        'Sobre mí', 'Experiencia', 'Formación', 
+        'Habilidades', 'Proyectos', 'Artículos', 'Contacto'
+    ];
+    const navigation = document.getElementById('navigation');
+
+    navLinks.forEach((link, index) => {
+        const listItem = document.createElement('li');
+        const anchor = document.createElement('a');
+        anchor.href = `#${link.toLowerCase()}`;
+        anchor.textContent = navLinksEsp[index];
+        listItem.appendChild(anchor);
+        navigation.appendChild(listItem);
+    });
+}
+
+function setupBackToTopButton() {
+    const toTopBtn = document.createElement("button");
+    toTopBtn.id = "toTopBtn";
+    toTopBtn.title = "Go to top";
+    toTopBtn.innerHTML = '<i class="fa-solid fa-angles-up"></i>';
+    document.body.appendChild(toTopBtn);
+
+    window.onscroll = () => {
+        const shouldShowButton = document.body.scrollTop > 20 ||
+        document.documentElement.scrollTop > 20;
+        toTopBtn.style.display = shouldShowButton ? "block" : "none";
+    };
+
+    toTopBtn.onclick = () => {
+        window.scrollTo({top: 0, behavior: 'smooth'});
+    };
+}
+
+function populateContent() {
+    populateIntroduction();
+    populateAbout();
+    populateSkills();
+    populateEducation();
+    populateProjects();
+    populatePublications();
+    populateExperience();
+}
+
+function setupFooter() {
+    const footer = document.getElementById('footer');
+    const contactDetails = getContactDetails();
+
+    const contactInfo = document.createElement('div');
+    contactInfo.id = 'contact';
+    footer.appendChild(contactInfo);
+
+    function createContactLink(detail) {
+        const { link, icon, text } = detail;
+        const p = document.createElement('p');
+        const anchorHtml = `
+            <a href="${link}" target="_blank">
+                <i class="${icon}"></i> ${text}
+            </a>
+        `;
+        p.innerHTML = anchorHtml;
+        return p;
+    }
+
+    Object.keys(contactDetails).forEach(key => {
+        const contactLink = createContactLink(contactDetails[key]);
+        contactInfo.appendChild(contactLink);
+    });
+
+    function addCopyrightElement(footerElement) {
+        const copyright = document.createElement('p');
+        const year = new Date().getFullYear(); // Opcional, año dinámico
+        const linkText = 'Descargar en PDF';
+        const filePath = 'docs/CV_GSFJ_rev_2026-01-08_ESP.pdf';
+
+
+        const htmlContent = `
+            &copy; Guillermo S. Fuentes-Jaque, ${year}.Todos los derechos reservados.
+            <a href="${filePath}" download>${linkText}</a>
+        `;
+        
+        copyright.innerHTML = htmlContent;
+        footerElement.appendChild(copyright);
+    }
+
+    // Usando la función en el código principal
+    addCopyrightElement(footer);
+}
+
+function getContactDetails() {
+    return {
+        email: {
+            link: 'mailto:g.fuentes@renare.uchile.cl',
+            text: 'g.fuentes@renare.uchile.cl',
+            icon: 'fas fa-envelope fa-fade'
+        },
+        phone: {
+            link: 'https://wa.me/56986876932',
+            text: '+56986876932',
+            icon: 'fas fa-phone fa-fade'
+        },
+        linkedIn: {
+            link: 'https://www.linkedin.com/in/guillermo-fuentes-jaque',
+            text: 'Guillermo S. Fuentes-Jaque',
+            icon: 'fab fa-linkedin fa-fade'
+        },
+        instagram: {
+            link: 'https://www.instagram.com/guillermo.fuentes.j',
+            text: '@guillermo.fuentes.j',
+            icon: 'fa-brands fa-square-instagram fa-fade'
+        }
+    };
+}
+
+function populateIntroduction() {
+    const introductionSection = document.getElementById('introduction');
+    const paragraphs = aboutDetails.split('<br>').map(paragraph => `<p>${paragraph}</p>`).join('');
+    introductionSection.innerHTML += `
+        <h1>${introduction.name}</h1>
+        <h2>${introduction.profession}</h2>
+        <p>${introduction.description}</p>
+        <p class="intro-thesis-link">
+            <a href="${thesisLandingUrl}" target="_blank" rel="noopener noreferrer">Explorar la tesis sobre precipitación en el desierto de Atacama a partir de productos CHIRPS</a>
+        </p>
+    `;
+}
+
+function populateAbout() {
+    const aboutSection = document.getElementById('about');
+    const paragraphs = aboutDetails.split('<br>').map(paragraph => `<p>${paragraph}</p>`).join('');
+    aboutSection.innerHTML = `<h2>Acerca de mí</h2>${paragraphs}`;
+}
+
+function populateSkills() {
+    const skillsSection = document.getElementById('skills');
+    skillsSection.innerHTML = `
+        <h2>Habilidades y herramientas</h2>
+        <p>${skillsIntroduction}</p>
+    `;
+
+    Object.entries(skills).forEach(([skill, rating]) => {
+        let ratingPercentage = (rating / 6) * 100;
+        const skillRow = document.createElement('div');
+        skillRow.className = 'skill-row';
+        skillRow.innerHTML = `
+            <div class="skill-track">
+                <div class="skill-bar" style="width: ${ratingPercentage}%"></div>
+            </div>
+            <span class="skill-name">${skill}</span>`;
+        skillsSection.appendChild(skillRow);
+    });
+}
+
+function populateEducation() {
+    const educationSection = document.getElementById('education');
+    const sortedEducationDetails = educationDetails.sort((a, b) => b.year - a.year);
+    educationSection.innerHTML = `
+        <h2>
+            Formación académica 
+            <a id="showCourses" href="#" style="margin-left: 10px; font-size: 0.8em;">
+                Mostrar cursos
+            </a>
+        </h2>
+        <div id="coursesContainer"></div>
+    `;
+
+    sortedEducationDetails.forEach(detail => {
+        educationSection.innerHTML += `
+            <h3>${detail.degree}</h3>
+            <p>${detail.institution}, ${detail.year}</p>
+        `;
+    });
+}
+
+function setupCoursesToggle() {
+    const showCoursesLink = document.getElementById('showCourses');
+    const coursesContainer = document.getElementById('coursesContainer');
+    let isShowingCourses = false;
+
+    showCoursesLink.addEventListener('click', function(e) {
+        e.preventDefault();
+        isShowingCourses = !isShowingCourses;
+        toggleCourses(showCoursesLink, coursesContainer, isShowingCourses);
+    });
+}
+
+function toggleCourses(link, container, isShowingCourses) {
+    container.innerHTML = ''
+    if (isShowingCourses) {
+        link.textContent = "Contraer cursos";
+
+        const sortedCourses = courses.sort((a, b) => b.año - a.año);
+
+        sortedCourses.forEach(course => {
+            const h3 = document.createElement('h3');
+            h3.textContent = course.nombre;
+            
+            const p = document.createElement('p');
+            p.textContent = `${course.organizacion}, ${course.ubicacion}, ${course.año}`;
+
+            container.appendChild(h3);
+            container.appendChild(p);
+        });
+    } else {
+        link.textContent = "Mostrar cursos";
+        container.innerHTML = '';
+    }
+}
+
+function populateProjects() {
+    const projectsSection = document.getElementById('projects');
+    projectsSection.innerHTML += '<h2>Proyectos</h2>';
+    projectsDetails.forEach(project => {
+        const projectTitle = document.createElement('h3');
+        projectTitle.textContent = project.title;
+
+        const projectDescription = document.createElement('p');
+        projectDescription.textContent = project.description;
+
+        const projectLink = document.createElement('a');
+        projectLink.href = project.link;
+        projectLink.textContent = 'Ver proyecto';
+        projectLink.setAttribute('target', '_blank');
+
+        projectsSection.appendChild(projectTitle);
+        projectsSection.appendChild(projectDescription);
+        projectsSection.appendChild(projectLink);
+    });
+}
+
+function populatePublications() {
+    const publicationsSection = document.getElementById('publications');
+    publicationsSection.innerHTML += '<h2>Artículos y tesis</h2>';
+    publicationsSection.innerHTML += `
+        <div class="featured-thesis" itemscope itemtype="https://schema.org/Thesis">
+            <p class="section-label">Tesis destacada</p>
+            <h3 itemprop="name">Desarrollo de un método para estimar la distribución espacial de la precipitación mensual en alta resolución en el desierto de Atacama (Chile) a partir de productos CHIRPS</h3>
+            <p itemprop="description">Esta tesis de magíster aborda la estimación espacial de la precipitación mensual en alta resolución en el desierto de Atacama, integrando productos CHIRPS, información meteorológica y técnicas de reducción de escala para mejorar la representación local de un fenómeno clave en el contexto del cambio climático.</p>
+            <div class="featured-thesis-links">
+                <a href="${thesisLandingUrl}" target="_blank" rel="noopener noreferrer">Explorar la landing de la tesis sobre precipitación en Atacama y CHIRPS</a>
+                <a href="${thesisRepositoryUrl}" target="_blank" rel="noopener noreferrer">Consultar la tesis en el Repositorio Académico de la Universidad de Chile</a>
+                <a href="${thesisPdfUrl}" target="_blank" rel="noopener noreferrer">Descargar el PDF institucional de la tesis</a>
+            </div>
+            <p class="citation"><strong>Cómo citar:</strong> Fuentes-Jaque, G. S. (2022). <em>Desarrollo de un método para estimar la distribución espacial de la precipitación mensual en alta resolución en el desierto de Atacama (Chile) a partir de productos CHIRPS</em> [Tesis de magíster, Universidad de Chile]. Repositorio Académico de la Universidad de Chile.</p>
+        </div>
+    `;
+
+    publicationsDetails.forEach(publication => {
+        const publicationTitle = document.createElement('h3');
+        publicationTitle.textContent = `${publication.author} (${publication.year})`;
+
+        const publicationDescription = document.createElement('p');
+        const articleLink = document.createElement('a');
+        articleLink.href = publication.link;
+        articleLink.textContent = 'Artículo';
+        articleLink.setAttribute('target', '_blank');
+        articleLink.setAttribute('rel', 'noopener noreferrer');
+
+        publicationDescription.textContent = `${publication.title} `;
+        publicationDescription.appendChild(articleLink);
+
+        publicationsSection.appendChild(publicationTitle);
+        publicationsSection.appendChild(publicationDescription);
+    });
+}
+
+function sortExperienceDetails(details) {
+    return details.sort((a, b) => {
+        const yearsA = a.year.split(' - ').map(year => parseInt(year));
+        const yearsB = b.year.split(' - ').map(year => parseInt(year));
+
+        const startYearA = yearsA[0]; // Primer año o único año
+        const endYearA = yearsA[1] || yearsA[0]; // Último año o único año
+
+        const startYearB = yearsB[0]; // Primer año o único año
+        const endYearB = yearsB[1] || yearsB[0]; // Último año o único año
+
+        if (endYearA !== endYearB) {
+            return endYearB - endYearA;
+        } else {
+            return startYearB - startYearA;
+        }
+    });
+}
+
+function populateExperience() {
+    const experienceSection = document.getElementById('experience');
+    setupExperienceToggle(experienceSection);
+
+    const sortedExperienceDetails = sortExperienceDetails(experienceDetails);
+    const sortedFullExperienceDetails = sortExperienceDetails(fullExperienceDetails);
+
+    populateExperienceDetails(experienceSection, sortedExperienceDetails);
+}
+
+function setupExperienceToggle(experienceSection) {
+    let isShowingFullExperience = false;
+    const header = document.createElement('h2');
+    header.id = 'experienceHeader';
+    header.innerHTML = 'Experiencia destacada';
+
+    const toggleExperienceLink = document.createElement('a');
+    toggleExperienceLink.id = 'toggleExperience';
+    toggleExperienceLink.href = '#';
+    toggleExperienceLink.style.marginLeft = '10px';
+    toggleExperienceLink.style.fontSize = '0.8em';
+    toggleExperienceLink.textContent = 'Mostrar más experiencia';
+    header.appendChild(toggleExperienceLink);
+    experienceSection.appendChild(header);
+
+    toggleExperienceLink.addEventListener('click', function(event) {
+        event.preventDefault();
+        isShowingFullExperience = !isShowingFullExperience;
+        updateHeaderText(header, isShowingFullExperience);
+        toggleExperience(experienceSection, isShowingFullExperience);
+    });
+}
+
+function toggleExperience(experienceSection, isShowingFullExperience) {
+    clearExperienceSection(experienceSection);
+    const details = isShowingFullExperience ? fullExperienceDetails : experienceDetails;
+    populateExperienceDetails(experienceSection, details);
+}
+
+function updateHeaderText(header, isShowingFullExperience) {
+    const toggleText = isShowingFullExperience 
+        ? 'Mostrar solo experiencia destacada' 
+        : 'Mostrar más experiencia';
+    const headerText = isShowingFullExperience 
+        ? 'Experiencia completa' 
+        : 'Experiencia destacada';
+    document.getElementById('toggleExperience').textContent = toggleText;
+    header.firstChild.textContent=headerText;
+}
+
+function clearExperienceSection(experienceSection) {
+    // Remove all children except the header (which contains the toggle link)
+    while (experienceSection.children.length > 1) {
+        experienceSection.removeChild(experienceSection.lastChild);
+    }
+}
+
+function populateExperienceDetails(experienceSection, details) {
+    details.forEach(detail => {
+        const h3 = document.createElement('h3');
+        h3.textContent = `${detail.jobTitle} (${detail.year})`;
+        const p = document.createElement('p');
+        p.textContent = `${detail.description}, ${detail.company}`;
+        experienceSection.appendChild(h3);
+        experienceSection.appendChild(p);
+    });
+}
+
+window.onload = function() {
+    removeLoadingDiv();
+    setupPageElements();
+};
