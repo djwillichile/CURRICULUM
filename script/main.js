@@ -212,18 +212,22 @@ function populateSkills() {
     skillsSection.innerHTML = `
         <h2>Habilidades y herramientas</h2>
         <p>${skillsIntroduction}</p>
+        <div class="skill-grid"></div>
     `;
 
-    Object.entries(skills).forEach(([skill, rating]) => {
-        let ratingPercentage = (rating / 6) * 100;
-        const skillRow = document.createElement('div');
-        skillRow.className = 'skill-row';
-        skillRow.innerHTML = `
-            <div class="skill-track">
-                <div class="skill-bar" style="width: ${ratingPercentage}%"></div>
+    const grid = skillsSection.querySelector('.skill-grid');
+    skillCategories.forEach(category => {
+        const card = document.createElement('div');
+        card.className = 'skill-card';
+        const tags = category.tools.map(t => `<span class="skill-tag">${t}</span>`).join('');
+        card.innerHTML = `
+            <div class="skill-card-header">
+                <i class="${category.icon}"></i>
+                <strong>${category.name}</strong>
             </div>
-            <span class="skill-name">${skill}</span>`;
-        skillsSection.appendChild(skillRow);
+            <div class="skill-tags">${tags}</div>
+        `;
+        grid.appendChild(card);
     });
 }
 
